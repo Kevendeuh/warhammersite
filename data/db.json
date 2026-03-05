@@ -1,0 +1,88 @@
+{
+  "users": [
+    {
+      "id": "c9e07085-64b9-4856-833a-b09d866a2e7e",
+      "nom": "CASTEL-MARÉCHAL",
+      "prenom": "Antoine",
+      "email": "antoine.castelmarechal@gmail.com",
+      "mot_de_passe": "$2a$10$QTMMucLzDBWuIJZziguXIeFbP9uuuwPL3PcobDmkr57bOu1toqmg.",
+      "adresse_postale": "8 Rue des Carmes,",
+      "created_at": "2026-03-05T12:57:16.373Z"
+    }
+  ],
+  "figurines": [
+    {
+      "id": "cc3f1371-c9c9-4556-a1ee-dc3432ada877",
+      "nom": "Apothicaire Bienveillant",
+      "description_lore": "Gardienne de la Narthecium rose, l'Apothicaire Space Maid soigne ses frères d'armes avec une douceur terrifiante. Son sourire est la dernière chose que voient les hérétiques.",
+      "prix_credits": 2800,
+      "image_url": "/images/apoticary.png",
+      "stock": 15
+    },
+    {
+      "id": "e7098063-4a17-4f52-b7a2-8a6eaebf0045",
+      "nom": "Terminator Mignon Supreme",
+      "description_lore": "Revêtue d'une armure Tactique Terminator customisée en rose, elle distribue des câlins... et des obus de Cyclone. Ses nœuds résistent au vide spatial.",
+      "prix_credits": 4200,
+      "image_url": "/images/terminator.jpg",
+      "stock": 8
+    },
+    {
+      "id": "f8f53b2d-ccbf-43e7-85cc-56fc083fdae8",
+      "nom": "Chevaucheur de Moto de Service",
+      "description_lore": "Sur sa moto repeinte en rose bonbon, cette Space Maid patrouille les ruches à grande vitesse. Son tablier flotte dans le vent de la guerre.",
+      "prix_credits": 3500,
+      "image_url": "/images/bike.png",
+      "stock": 12
+    },
+    {
+      "id": "bf86426b-b591-4f52-b6fd-71dd961d1e1a",
+      "nom": "Diaporama de Gloire Impériale",
+      "description_lore": "Un chef-d'œuvre de propagande bienveillante. Cette figurine projette des images de l'Empereur en tenue de maid. Classé confidentiel par l'Inquisition.",
+      "prix_credits": 1900,
+      "image_url": "/images/diaporama.png",
+      "stock": 20
+    },
+    {
+      "id": "d7e1e507-522a-47be-b964-42228ff5758a",
+      "nom": "Drop Pod Restaurant",
+      "description_lore": "Le Drop Pod le plus redouté du secteur, car il délivre non pas des Space Marines... mais une cuisine de terrain cinq étoiles. L'ennemi capitule de faim.",
+      "prix_credits": 5500,
+      "image_url": "/images/dropPodRestaurant.png",
+      "stock": 5
+    },
+    {
+      "id": "4ffc8093-bad2-4db0-9f54-369263d93470",
+      "nom": "Chapelain de la Très Sainte Douceur",
+      "description_lore": "Le Chapelain brandit son sceptre crânien et récite les litanies de la délicatesse. Ses sermons durent exactement le temps d'un thé chaud.",
+      "prix_credits": 3100,
+      "image_url": "/images/chaplain.png",
+      "stock": 10
+    },
+    {
+      "id": "99205c1b-69f1-4c0e-a8a6-b4e905e58cde",
+      "nom": "Tacticus Prima",
+      "description_lore": "Maîtresse de la stratégie en tablier de combat, Tacticus Prima a planifié la reconquête de seize systèmes stellaires entre deux fournées de cookies.",
+      "prix_credits": 2600,
+      "image_url": "/images/tacticus.png",
+      "stock": 18
+    },
+    {
+      "id": "89049eb0-ff3c-45fb-a3d6-d877da660bb2",
+      "nom": "Primarch Nekona l'Éternelle",
+      "description_lore": "Descendante divine, Nekona mène ses légions avec une grâce féline. On dit que même le Chaos recule devant ses oreilles de chat et son regard doré.",
+      "prix_credits": 9800,
+      "image_url": "/images/primarchNekona.png",
+      "stock": 3
+    },
+    {
+      "id": "6cc40a53-c821-4d81-82b1-6230f125d98b",
+      "nom": "Hulkbuster Cuirassé de Service",
+      "description_lore": "Une armure colossale de la Manufacture Impériale, repeinte en rose par des mains inconnues. Le pilote serait une Space Maid de la 1ère Compagnie. Non confirmé.",
+      "prix_credits": 7700,
+      "image_url": "/images/hulkbuster.png",
+      "stock": 6
+    }
+  ],
+  "orders": []
+}
