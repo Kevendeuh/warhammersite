@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Figurines Space Maids — Armurerie Impériale</title>
+  <meta name="description" content="Boutique officielle des figurines Space Maids Warhammer 40K. Acquérez vos soldates de l'Empereur ornées de roses et de nœuds. Crédits imperials acceptés." />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <!-- ═══ NAVIGATION ═══ -->
+  <nav class="nav" role="navigation" aria-label="Navigation principale">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo" aria-label="Accueil Armurerie Impériale">
+        <span class="logo-sigil" aria-hidden="true">⚙</span>
+        <span>
+          ARMURERIE IMPÉRIALE
+          <span class="subtitle">Space Maids Division ✦ 40.000</span>
+        </span>
+      </a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="/" class="active" id="nav-boutique">Boutique</a></li>
+        <li><a href="/login.html" id="nav-auth">Connexion</a></li>
+        <li><a href="#orders-section" id="nav-orders" style="display:none">Mes Commandes</a></li>
+      </ul>
+
+      <a href="/checkout.html" class="nav-cart" id="nav-cart-btn" aria-label="Mon Drop Pod (panier)">
+        🚀 Drop Pod
+        <span class="cart-badge" id="cart-badge" aria-live="polite">0</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <header class="hero" role="banner">
+    <div class="container">
+      <p class="hero-tag">✦ Archives de l'Adeptus Figurinae ✦</p>
+      <h1>ARMURERIE <span class="pink">SPACE MAIDS</span></h1>
+      <p class="hero-sub">
+        Terminal de Commande Impériale — Secteur : Figurines d'Élite<br>
+        <em>Que l'Empereur guide vos acquisitions</em>
+      </p>
+
+      <blockquote class="hero-lore" aria-label="Citation du lore">
+        "Elles combattent avec une grâce implacable, leurs tabliers immaculés résistant à tout plasma bolt.
+        On murmure dans les ruches que leurs nœuds contiennent des micro-réacteurs à fusion.
+        L'Inquisition a cessé d'enquêter. Par prudence."
+        <br>— Extrait du Codex Astartes Adorabilis, Tome VII
+      </blockquote>
+    </div>
+  </header>
+
+  <hr class="gold-rule" />
+
+  <!-- ═══ BOUTIQUE ═══ -->
+  <main id="main-content" class="shop-section">
+    <div class="container">
+
+      <div class="section-header">
+        <h2>⚜ CATALOGUE DE FIGURINES ⚜</h2>
+        <p>Chaque unité est bénie par le Mécanicus. Stock limité. L'Empereur protège... les retardataires ne seront pas remboursés.</p>
+      </div>
+
+      <!-- Figurine Grid — populated by JS -->
+      <div class="figurine-grid" id="figurine-grid" role="list" aria-label="Grille de figurines">
+        <!-- Loading state -->
+        <div class="loading-state" id="loading-state" role="status" aria-live="polite">
+          <div class="loading-spinner" aria-hidden="true"></div>
+          <p>Consultation des archives impériales...</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <span class="footer-sigil" aria-hidden="true">⚙</span>
+      <div class="footer-divider"><span>✦</span></div>
+      <p class="footer-title">ADEPTUS MECHANICUS — ARMURERIE IMPÉRIALE</p>
+      <p class="footer-copy">
+        © M41.000 — Tous droits réservés par l'Omnissiah. Toute reproduction non impériale sera punie par la Frappe Orbitale.
+      </p>
+    </div>
+  </footer>
+
+  <!-- ═══ TOAST ═══ -->
+  <div class="toast" id="toast" role="alert" aria-live="assertive">
+    <span class="toast-icon" id="toast-icon"></span>
+    <span id="toast-msg"></span>
+  </div>
+
+  <script src="/js/shop.js"></script>
+</body>
+</html>

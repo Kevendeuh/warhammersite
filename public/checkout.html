@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drop Pod — Confirmation de Frappe Orbitale</title>
+    <meta name="description"
+        content="Récapitulatif de votre commande Space Maids. Confirmez votre adresse et ordonnez la frappe orbitale de livraison." />
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+
+    <!-- ═══ NAV ═══ -->
+    <nav class="nav" role="navigation" aria-label="Navigation principale">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo" aria-label="Retour à la boutique">
+                <span class="logo-sigil" aria-hidden="true">⚙</span>
+                <span>
+                    ARMURERIE IMPÉRIALE
+                    <span class="subtitle">Space Maids Division ✦ 40.000</span>
+                </span>
+            </a>
+            <ul class="nav-links" role="list">
+                <li><a href="/">← Retour Boutique</a></li>
+            </ul>
+            <a href="/checkout.html" class="nav-cart active" aria-label="Drop Pod actif"
+                style="border-color: var(--border-gold); color: var(--text-gold);">
+                🚀 Drop Pod
+                <span class="cart-badge visible" id="cart-badge" aria-live="polite">0</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- ═══ PAGE HEADER ═══ -->
+    <header style="padding: 2.5rem 1.5rem 0; text-align:center">
+        <div class="container">
+            <p class="hero-tag">✦ Protocole de Frappe Orbitale ✦</p>
+            <h1 style="font-size: clamp(1.5rem,3vw,2.5rem); margin-bottom: 0.5rem;">
+                DROP POD DE <span style="color:var(--accent-pink)">LIVRAISON</span>
+            </h1>
+            <p style="color:var(--text-secondary); font-size:0.88rem; margin-bottom:1rem;">
+                Vérifiez votre commande avant d'autoriser la frappe orbitale.
+            </p>
+        </div>
+        <hr class="gold-rule" style="max-width:600px; margin:0 auto 1rem;">
+    </header>
+
+    <!-- ═══ CHECKOUT LAYOUT ═══ -->
+    <main id="main-content" class="container checkout-layout">
+
+        <!-- Left: Cart items + Address form -->
+        <div style="display:flex; flex-direction:column; gap:1.5rem;">
+
+            <!-- Cart Contents -->
+            <div class="panel">
+                <div class="panel-header">
+                    <span aria-hidden="true">🗃</span>
+                    <h2>Contenu du Drop Pod</h2>
+                </div>
+                <div class="panel-body" id="cart-items-container">
+                    <div class="cart-empty" id="cart-empty-state">
+                        <span class="empty-icon" aria-hidden="true">🚀</span>
+                        <p>Le Drop Pod est vide.</p>
+                        <a href="/" class="btn btn-gold" style="margin-top:1rem; display:inline-flex;">
+                            ← Retourner à la boutique
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Delivery Address -->
+            <div class="panel" id="address-panel">
+                <div class="panel-header">
+                    <span aria-hidden="true">📍</span>
+                    <h2>Coordonnées de Livraison</h2>
+                </div>
+                <div class="panel-body">
+                    <form id="checkout-form" novalidate>
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label class="form-label" for="field-nom">Nom</label>
+                                <input class="form-input" type="text" id="field-nom" name="nom"
+                                    placeholder="Lectrice, Chevalier..." autocomplete="family-name" required />
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="field-prenom">Prénom</label>
+                                <input class="form-input" type="text" id="field-prenom" name="prenom"
+                                    placeholder="Nekona, Sœur..." autocomplete="given-name" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="field-email">Email</label>
+                            <input class="form-input" type="email" id="field-email" name="email"
+                                placeholder="soldat@imperium.terra" autocomplete="email" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="field-adresse">Adresse de la Ruche</label>
+                            <input class="form-input" type="text" id="field-adresse" name="adresse"
+                                placeholder="Tour Hive n°42, Niveau Omega, terra..." autocomplete="street-address"
+                                required />
+                        </div>
+
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label class="form-label" for="field-cp">Code Postal</label>
+                                <input class="form-input" type="text" id="field-cp" name="cp" placeholder="40K-TERRA"
+                                    required />
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="field-ville">Cité-Ruche</label>
+                                <input class="form-input" type="text" id="field-ville" name="ville"
+                                    placeholder="Hive Secundus..." autocomplete="address-level2" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="field-note">Note aux Servant.e.s (optionnel)</label>
+                            <textarea class="form-textarea" id="field-note" name="note"
+                                placeholder="Ex: Sonner au portail est inutile. Le Bolter avertira de votre arrivée."></textarea>
+                        </div>
+
+                        <p id="form-error" class="auth-error" style="display:none"></p>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Right: Order Summary -->
+        <aside aria-label="Récapitulatif de commande">
+
+            <div class="panel" style="position:sticky; top:100px;">
+                <div class="panel-header">
+                    <span aria-hidden="true">📋</span>
+                    <h2>Récapitulatif</h2>
+                </div>
+                <div class="panel-body">
+
+                    <div id="order-summary">
+                        <div class="summary-row">
+                            <span>Sous-total</span>
+                            <span id="summary-subtotal">0 ₵</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Frappe orbitale</span>
+                            <span style="color:var(--accent-pink)">Gratuite 🎀</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Bénédiction de l'Omnissiah</span>
+                            <span style="color:var(--text-secondary)">Incluse</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>TOTAL</span>
+                            <span class="amount" id="summary-total">0 ₵</span>
+                        </div>
+                    </div>
+
+                    <hr class="gold-rule" style="margin:1rem 0">
+
+                    <div style="text-align:center; margin-bottom:1rem;">
+                        <p
+                            style="font-size:0.72rem; color:var(--text-secondary); letter-spacing:0.06em; margin-bottom:0.5rem;">
+                            ─ PAIEMENT FICTIF — CRÉDITS IMPÉRIAUX ─
+                        </p>
+                        <p style="font-size:0.68rem; color:rgba(154,143,128,0.5);">
+                            Aucune transaction réelle n'est effectuée.<br>
+                            L'Inquisition valide votre commande à la place.
+                        </p>
+                    </div>
+
+                    <button class="btn btn-strike" id="strike-btn" type="button" disabled
+                        aria-label="Valider la commande — Ordonner la Frappe Orbitale">
+                        ☄️ ORDONNER LA FRAPPE ORBITALE DE LIVRAISON
+                    </button>
+
+                    <div style="text-align:center; margin-top:0.75rem;">
+                        <a href="/" class="btn btn-outline">← Continuer les achats</a>
+                    </div>
+
+                </div>
+            </div>
+
+        </aside>
+
+    </main>
+
+    <!-- ═══ ORBITAL STRIKE OVERLAY ═══ -->
+    <div id="orbital-overlay" role="dialog" aria-modal="true" aria-label="Frappe orbitale en cours">
+        <div id="loading-phase" style="display:flex; flex-direction:column; align-items:center; gap:1.5rem;">
+            <div class="orbital-circle" aria-hidden="true"></div>
+            <p class="orbital-title">FRAPPE ORBITALE INITIÉE</p>
+            <p class="orbital-sub">SYNCHRONISATION AVEC LE VAISSEAU-RUCHE...</p>
+            <p class="orbital-sub" id="orbital-countdown" aria-live="polite"></p>
+        </div>
+
+        <div class="orbital-success" id="success-phase">
+            <span class="success-check" aria-hidden="true">✅</span>
+            <h2 class="success-title">FRAPPE CONFIRMÉE !</h2>
+            <p style="color:var(--text-secondary); font-size:0.9rem; text-align:center; max-width:400px;">
+                Votre Drop Pod est en route vers vos coordonnées.
+                L'Omnissiah bénit cette transaction.
+            </p>
+            <p class="success-code" id="order-code" aria-live="polite"></p>
+            <p style="font-size:0.78rem; color:var(--text-secondary);">
+                🎀 Vos Space Maids seront déployées sous 4 à 7 cycles stellaires.
+            </p>
+            <div style="display:flex; gap:1rem; margin-top:1rem; flex-wrap:wrap; justify-content:center;">
+                <a href="/" class="btn btn-gold">← Retour Boutique</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <span class="footer-sigil" aria-hidden="true">⚙</span>
+            <div class="footer-divider"><span>✦</span></div>
+            <p class="footer-title">ADEPTUS MECHANICUS — ARMURERIE IMPÉRIALE</p>
+            <p class="footer-copy">
+                © M41.000 — Tous droits réservés par l'Omnissiah.
+            </p>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast" role="alert" aria-live="assertive">
+        <span class="toast-icon" id="toast-icon"></span>
+        <span id="toast-msg"></span>
+    </div>
+
+    <script src="/js/checkout.js"></script>
+</body>
+
+</html>
