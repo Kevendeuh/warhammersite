@@ -24,8 +24,8 @@
       </a>
 
       <ul class="nav-links" role="list">
-        <li><a href="/" class="active" id="nav-accueil">Accueil</a></li>
-        <li><a href="/boutique.html" id="nav-boutique">Boutique</a></li>
+        <li><a href="/" id="nav-accueil">Accueil</a></li>
+        <li><a href="/boutique.html" class="active" id="nav-boutique">Boutique</a></li>
         <li><a href="/faq.html" id="nav-faq">FAQ</a></li>
         <li><a href="/login.html" id="nav-auth">Connexion</a></li>
         <li><a href="#orders-section" id="nav-orders" style="display:none">Mes Commandes</a></li>
@@ -65,34 +65,17 @@
     <div class="container">
 
       <div class="section-header">
-        <h2>⚜ LE PRIMARCH PERDU ⚜</h2>
-        <p>Hérésie selon l'Inquisition, Révélation selon d'autres. L'histoire de Nekona l'Éternelle.</p>
+        <h2>⚜ CATALOGUE DE FIGURINES ⚜</h2>
+        <p>Chaque unité est bénie par le Mécanicus. Stock limité. L'Empereur protège... les retardataires ne seront pas
+          remboursés.</p>
       </div>
 
-      <div
-        style="background: var(--bg-card); border: 1px solid rgba(244, 167, 195, 0.3); border-radius: var(--radius-md); padding: 2.5rem; max-width: 800px; margin: 0 auto;">
-        <p style="color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.8;">
-          Les archives impériales officielles comptent 18 légions de Space Marines. Toutefois, des rumeurs persistantes
-          dans les bas-fonds des cités-ruches évoquent une mystérieuse 19ème Légion, composée exclusivement de
-          redoutables guerrières en armures énergétiques pastel, maniant le balai-bolter et le plumeau tronçonneur.
-        </p>
-        <h3
-          style="font-family: var(--font-girly); font-size: 2.5rem; color: var(--accent-pink); margin-bottom: 1rem; text-align: center; text-shadow: 0 0 15px var(--glow-pink);">
-          Nekona, la Gracieuse</h3>
-        <p style="color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.8;">
-          D'après de saints textes apocryphes jalousement gardés, le Primarch de cette légion oubliée serait Nekona.
-          Créée par l'Empereur lui-même dans les profondeurs de Terra pour infuser à la fois de l'empathie et une
-          intraitable perfection hygiénique dans l'Imperium, sa physiologie incorpore d'étranges particularités...
-          notamment des oreilles félines douées de capacités sensorielles hors normes.
-        </p>
-        <p style="color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.8;">
-          Aujourd'hui, son Chapitre non-sanctionné — les <strong>Space Maids</strong> — repousse vaillamment les
-          ténèbres du Chaos à grands coups d'escouades ornées de nœuds et de laçages en ceramite, prouvant aux Heretic
-          Astartes que la sauvegarde de l'Humanité commence par un nettoyage systématique et impitoyable de la galaxie.
-        </p>
-
-        <div style="text-align: center; margin-top: 3rem;">
-          <a href="/boutique.html" class="btn btn-pink">Voir le Catalogue Sensible</a>
+      <!-- Figurine Grid — populated by JS -->
+      <div class="figurine-grid" id="figurine-grid" role="list" aria-label="Grille de figurines">
+        <!-- Loading state -->
+        <div class="loading-state" id="loading-state" role="status" aria-live="polite">
+          <div class="loading-spinner" aria-hidden="true"></div>
+          <p>Consultation des archives impériales...</p>
         </div>
       </div>
 
@@ -131,7 +114,7 @@
     </div>
   </aside>
 
-  <!-- (Modal retiré) -->
+  <!-- (Modal retiré car transfert sur page dédiée) -->
 
   <!-- ═══ TOAST ═══ -->
   <div class="toast" id="toast" role="alert" aria-live="assertive">

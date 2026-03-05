@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAQ — Armurerie Impériale</title>
+    <meta name="description" content="Foire aux questions des Space Maids" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <style>
+        .faq-container {
+            margin-bottom: 2rem;
+        }
+
+        .faq-item {
+            background: rgba(201, 168, 76, 0.05);
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            padding: 1.5rem;
+        }
+
+        .faq-q {
+            font-family: var(--font-gothic);
+            font-size: 1.2rem;
+            color: var(--text-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-a {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="nav" role="navigation" aria-label="Navigation principale">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo" aria-label="Accueil Armurerie Impériale">
+                <span class="logo-sigil" aria-hidden="true">⚙</span>
+                <span>
+                    ARMURERIE IMPÉRIALE
+                    <span class="subtitle">Space Maids Division ✦ 40.000</span>
+                </span>
+            </a>
+
+            <ul class="nav-links" role="list">
+                <li><a href="/" id="nav-accueil">Accueil</a></li>
+                <li><a href="/boutique.html" id="nav-boutique">Boutique</a></li>
+                <li><a href="/faq.html" class="active" id="nav-faq">FAQ</a></li>
+                <li><a href="/login.html" id="nav-auth">Connexion</a></li>
+                <li><a href="#orders-section" id="nav-orders" style="display:none">Mes Commandes</a></li>
+            </ul>
+
+            <button class="nav-cart" id="nav-cart-btn" type="button" aria-label="Mon Drop Pod (panier)"
+                aria-expanded="false" aria-controls="mini-cart">
+                🐾 Drop Pod
+                <span class="cart-badge" id="cart-badge" aria-live="polite">0</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ═══ FAQ ═══ -->
+    <header style="padding: 2.5rem 1.5rem 0; text-align:center">
+        <div class="container">
+            <p class="hero-tag">✦ Registre des Interrogations Fréquentes ✦</p>
+            <h1 style="font-size: clamp(1.5rem,3vw,2.5rem); margin-bottom: 0.5rem;">
+                FOIRE AUX <span class="pink">QUESTIONS</span>
+            </h1>
+            <p style="color:var(--text-secondary); font-size:0.88rem; margin-bottom:1rem;">
+                Les réponses agréées par l'Inquisition.
+            </p>
+        </div>
+        <hr class="gold-rule" style="max-width:600px; margin:0 auto 1rem;">
+    </header>
+
+    <main id="main-content" class="shop-section">
+        <div class="container" style="max-width: 800px;">
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <h3 class="faq-q">Où vont l'argent de mes crédits impériaux ?</h3>
+                    <p class="faq-a">Directement dans l'effort de guerre impérial ! Et accessoirement dans la production
+                        de tabliers de combat en cera-tissus renforcés et de nouvelles recettes de cookies
+                        réconfortants.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-q">Sont-elles fidèles à l'Empereur ?</h3>
+                    <p class="faq-a">Absolument ! Leur loyauté est sans faille. Toute rumeur prétendant qu'un primarch
+                        nommé Nekona aurait des oreilles de chat pour séduire les hérétiques est purement séditieuse et
+                        farouchement démentie.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-q">Comment fonctionne la frappe orbitale de livraison ?</h3>
+                    <p class="faq-a">Après validation du paiement (purement symbolique sur notre domaine test), un
+                        croiseur léger de classe "Tea Time" lance un drop pod renforcé qui s'écrase exactement aux
+                        coordonnées fournies. Les dommages collatéraux sur la voirie sont à votre charge.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-q">Où puis-je peindre mes Space Maids ?</h3>
+                    <p class="faq-a">Partout, mais il est recommandé d'utiliser des teintes "Purity Pink" et "Clean
+                        White" pour l'approbation du Chapitre. L'ajout de marquages de Hello Kitty nécessite cependant
+                        une dérogation du Magos concerné.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <span class="footer-sigil" aria-hidden="true">⚙</span>
+            <div class="footer-divider"><span>✦</span></div>
+            <p class="footer-title">ADEPTUS MECHANICUS — ARMURERIE IMPÉRIALE</p>
+            <p class="footer-copy">
+                © M41.000 — Tous droits réservés par l'Omnissiah.
+            </p>
+        </div>
+    </footer>
+
+    <!-- ═══ MINI CART DRAWER ═══ -->
+    <div id="mini-cart-overlay" aria-hidden="true"></div>
+    <aside id="mini-cart" role="dialog" aria-modal="true" aria-label="Aperçu du Drop Pod" aria-hidden="true">
+        <div class="mini-cart-header">
+            <h2>🐾 Drop Pod</h2>
+            <button class="mini-cart-close" id="mini-cart-close" type="button" aria-label="Fermer le panier">✕</button>
+        </div>
+        <div class="mini-cart-body" id="mini-cart-body"></div>
+        <div class="mini-cart-footer" id="mini-cart-footer">
+            <div class="mini-cart-total">
+                <span>Total :</span>
+                <span id="mini-cart-total">0 ₵</span>
+            </div>
+            <a href="/checkout.html" class="btn btn-strike" id="mini-cart-go">☄️ Voir le Drop Pod complet</a>
+        </div>
+    </aside>
+
+    <!-- ═══ TOAST ═══ -->
+    <div class="toast" id="toast" role="alert" aria-live="assertive">
+        <span class="toast-icon" id="toast-icon"></span>
+        <span id="toast-msg"></span>
+    </div>
+
+    <script src="/js/shop.js"></script>
+</body>
+
+</html>
