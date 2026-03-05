@@ -26,10 +26,10 @@
         <li><a href="#orders-section" id="nav-orders" style="display:none">Mes Commandes</a></li>
       </ul>
 
-      <a href="/checkout.html" class="nav-cart" id="nav-cart-btn" aria-label="Mon Drop Pod (panier)">
+      <button class="nav-cart" id="nav-cart-btn" type="button" aria-label="Mon Drop Pod (panier)" aria-expanded="false" aria-controls="mini-cart">
         🚀 Drop Pod
         <span class="cart-badge" id="cart-badge" aria-live="polite">0</span>
-      </a>
+      </button>
     </div>
   </nav>
 
@@ -86,6 +86,44 @@
       </p>
     </div>
   </footer>
+
+  <!-- ═══ MINI CART DRAWER ═══ -->
+  <div id="mini-cart-overlay" aria-hidden="true"></div>
+  <aside id="mini-cart" role="dialog" aria-modal="true" aria-label="Aperçu du Drop Pod" aria-hidden="true">
+    <div class="mini-cart-header">
+      <h2>🚀 Drop Pod</h2>
+      <button class="mini-cart-close" id="mini-cart-close" type="button" aria-label="Fermer le panier">✕</button>
+    </div>
+    <div class="mini-cart-body" id="mini-cart-body">
+      <!-- Rempli par shop.js -->
+    </div>
+    <div class="mini-cart-footer" id="mini-cart-footer">
+      <div class="mini-cart-total">
+        <span>Total :</span>
+        <span id="mini-cart-total">0 ₵</span>
+      </div>
+      <a href="/checkout.html" class="btn btn-strike" id="mini-cart-go">☄️ Voir le Drop Pod complet</a>
+    </div>
+  </aside>
+
+  <!-- ═══ FIGURINE MODAL ═══ -->
+  <div id="figurine-modal-overlay" aria-hidden="true"></div>
+  <div id="figurine-modal" role="dialog" aria-labelledby="modal-title" aria-modal="true" aria-hidden="true">
+    <button id="modal-close" aria-label="Fermer">✕</button>
+    <div class="modal-content">
+      <div class="modal-img-col">
+        <img id="modal-img" src="" alt="">
+      </div>
+      <div class="modal-info-col">
+        <h2 id="modal-title"></h2>
+        <p class="modal-price" id="modal-price"></p>
+        <p class="modal-desc" id="modal-desc"></p>
+        <div class="modal-buy-wrap">
+           <button class="btn btn-strike" id="modal-buy-btn" type="button">🚀 Ajouter au Drop Pod</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- ═══ TOAST ═══ -->
   <div class="toast" id="toast" role="alert" aria-live="assertive">

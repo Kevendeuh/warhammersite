@@ -1,0 +1,66 @@
+# Correction du Panier (Drop Pod) — Space Maids Shop
+
+Le panier (checkout.html + checkout.js) présente plusieurs bugs qui l'empêchent de fonctionner correctement. Le front-end et le back-end sont bien structurés, les problèmes sont dans la logique JS du côté client.
+
+## Bugs Identifiés
+
+### Bug #1 — Stacking des event listeners (CRITIQUE)
+Dans [checkout.js](file://wsl$/Ubuntu/home/antoine/warhammersite/public/js/checkout.js), la fonction [renderCart()](file://wsl$/Ubuntu/home/antoine/warhammersite/public/js/checkout.js#46-100) attache un listener à chaque appel :
+```js
+container.addEventListener('click', handleCartAction); // Ligne 98 — appelé à chaque renderCart()
+```
+Résultat : après la première interaction (clic sur + / - / retirer), les événements s'accumulent et [handleCartAction](file://wsl$/Ubuntu/home/antoine/warhammersite/public/js/checkout.js#103-132) s'exécute N fois → comportement imprévisible, quantités qui sautent de plusieurs unités d'un coup.
+
+### Bug #2 — Double nettoyage dans handleCartAction (CRITIQUE)
+Dans [handleCartAction](file://wsl$/Ubuntu/home/antoine/warhammersite/public/js/checkout.js#103-132), le code supprime manuellement les `.cart-item` puis appelle [renderCart()](file://wsl$/Ubuntu/home/antoine/warhammersite/public/js/checkout.js#46-100) qui les supprime à nouveau. C'est redondant et peut laisser le DOM dans un état incohérent.
+
+### Bug #3 — Pas de mini-panier / cart drawer sur la boutique
+Sur [index.html](file://wsl$/Ubuntu/home/antoine/warhammersite/public/index.html), le panier badge existe mais il n'y a pas de mini-drawer récapitulatif. L'utilisateur ne peut pas voir son panier sans aller vers [/checkout.html](file://wsl$/Ubuntu/home/antoine/warhammersite/public/checkout.html). Ce n'est pas un bug bloquant mais nuit à l'UX.
+
+## Proposed Changes
+
+### Frontend — JS
+
+#### [MODIFY] [checkout.js](file:///\\wsl$\Ubuntu\home\antoine\warhammersite\public\js\checkout.js)
+- **Fix Bug #1** : Ne pas attacher le listener dans [renderCart()](file://wsl$/Ubuntu/home/antoine/warhammersite/public/js/checkout.js#46-100). Attacher [handleCartAction](file://wsl$/Ubuntu/home/antoine/warhammersite/public/js/checkout.js#103-132) une seule fois au `DOMContentLoaded` (init).
+- **Fix Bug #2** : Supprimer le nettoyage redondant dans [handleCartAction](file://wsl$/Ubuntu/home/antoine/warhammersite/public/js/checkout.js#103-132). Laisser [renderCart()](file://wsl$/Ubuntu/home/antoine/warhammersite/public/js/checkout.js#46-100) gérer tout le re-rendu.
+- Simplifier [renderCart()](file://wsl$/Ubuntu/home/antoine/warhammersite/public/js/checkout.js#46-100) pour qu'elle soit pure (render only, pas de side effects d'event).
+
+---
+
+### Frontend — CSS
+
+#### [MODIFY] [style.css](file:///\\wsl$\Ubuntu\home\antoine\warhammersite\public\css\style.css)
+Vérifier et compléter les styles manquants pour :
+- `.checkout-layout` (grid 2 colonnes)
+- `.panel`, `.panel-header`, `.panel-body`
+- `.cart-item`, `.cart-item-img`, `.cart-item-qty`, `.cart-item-price`
+- `.qty-btn`, `.remove-btn`
+- `.summary-row`, `.summary-row.total`
+- `.btn-strike` (bouton orbital)
+- `#orbital-overlay`, `.orbital-circle`, `.orbital-success`, `.success-phase.show`
+
+---
+
+### Frontend — HTML + JS (mini cart drawer)
+
+#### [MODIFY] [index.html](file:///\\wsl$\Ubuntu\home\antoine\warhammersite\public\index.html)
+Ajouter un **mini cart drawer** (tiroir latéral) qui s'ouvre quand on clique sur le bouton "🚀 Drop Pod" dans la nav. Il affiche les items du panier et un bouton "Voir le Drop Pod complet" → [/checkout.html](file://wsl$/Ubuntu/home/antoine/warhammersite/public/checkout.html).
+
+#### [MODIFY] [shop.js](file:///\\wsl$\Ubuntu\home\antoine\warhammersite\public\js\shop.js)
+Ajouter la logique du mini cart drawer : ouverture/fermeture, rendu dynamique du contenu depuis localStorage.
+
+---
+
+## Verification Plan
+
+### Test Manuel (navigateur)
+1. Lancer le serveur : `cd /home/antoine/warhammersite && node server.js` dans WSL
+2. Ouvrir `http://localhost:3000` dans un navigateur
+3. **Test ajout** : Cliquer "🚀 Drop Pod" sur 2-3 figurines → vérifier que le badge se met à jour
+4. **Test mini-drawer** : Cliquer sur le bouton "🚀 Drop Pod" en haut → vérifier que le drawer s'ouvre
+5. Naviguer vers [/checkout.html](file://wsl$/Ubuntu/home/antoine/warhammersite/public/checkout.html) 
+6. **Test quantité** : Cliquer les boutons + et − → vérifier que la quantité change de 1 à la fois (pas de sauts)
+7. **Test suppression** : Cliquer "✕ Retirer" → vérifier que l'item disparaît proprement
+8. **Test total** : Vérifier que le récapitulatif se met à jour correctement après chaque action
+9. **Test commande** : Remplir le formulaire et cliquer "☄️ ORDONNER LA FRAPPE ORBITALE" → vérifier l'animation de succès
