@@ -87,7 +87,7 @@ function renderMiniCart() {
   if (cart.length === 0) {
     body.innerHTML = `
           <div class="mini-cart-empty">
-            <span aria-hidden="true">🚀</span>
+            <span aria-hidden="true">🐾</span>
             <p>Le Drop Pod est vide.</p>
           </div>`;
     if (totalEl) totalEl.textContent = '0 ₵';
@@ -136,44 +136,7 @@ function closeMiniCart() {
   drawer?.setAttribute('aria-hidden', 'true');
 }
 
-// ── Figurine Modal ──────────────────────────────────────────────
-let currentModalFig = null;
-
-function openModal(fig) {
-  currentModalFig = fig;
-  document.getElementById('modal-img').src = fig.image_url;
-  document.getElementById('modal-img').alt = fig.nom;
-  document.getElementById('modal-title').textContent = fig.nom;
-  document.getElementById('modal-price').textContent = formatPrice(fig.prix_credits);
-  document.getElementById('modal-desc').textContent = fig.description_lore;
-
-  const inCart = getCart().some(i => i.id === fig.id);
-  const buyBtn = document.getElementById('modal-buy-btn');
-  if (buyBtn) {
-    if (inCart) {
-      buyBtn.classList.add('added');
-      buyBtn.textContent = '✓ Dans le Pod';
-    } else {
-      buyBtn.classList.remove('added');
-      buyBtn.textContent = '🚀 Ajouter au Drop Pod';
-    }
-  }
-
-  const overlay = document.getElementById('figurine-modal-overlay');
-  const modal = document.getElementById('figurine-modal');
-  overlay?.classList.add('show');
-  modal?.classList.add('open');
-  modal?.setAttribute('aria-hidden', 'false');
-}
-
-function closeModal() {
-  const overlay = document.getElementById('figurine-modal-overlay');
-  const modal = document.getElementById('figurine-modal');
-  overlay?.classList.remove('show');
-  modal?.classList.remove('open');
-  modal?.setAttribute('aria-hidden', 'true');
-  currentModalFig = null;
-}
+// Modal logic has been moved to individual figurine pages
 
 // ── Render figurine card ──────────────────────────────────────
 function renderCard(fig, index) {
@@ -211,7 +174,7 @@ function renderCard(fig, index) {
           aria-label="${inCart ? 'Figurine déjà dans le Drop Pod' : 'Ajouter ' + fig.nom + ' au Drop Pod'}"
           type="button"
         >
-          ${inCart ? '✓ Dans le Pod' : '🚀 Drop Pod'}
+          ${inCart ? '✓ Dans le Pod' : '🐾 Drop Pod'}
         </button>
       </div>
     </div>
@@ -224,15 +187,17 @@ function renderCard(fig, index) {
     btn.classList.add('added');
     btn.textContent = '✓ Dans le Pod';
     btn.setAttribute('aria-label', 'Figurine déjà dans le Drop Pod');
-    showToast(`${fig.nom} ajouté au Drop Pod !`, '🚀');
+    showToast(`${fig.nom} ajouté au Drop Pod !`, '🐾');
     // Ouvrir automatiquement le mini-drawer
     openMiniCart();
   });
 
-  // Clic sur l'image pour ouvrir la popup
+  // Clic sur l'image pour rediriger vers la page dédiée
   const imgWrap = card.querySelector('.card-img-wrap');
   if (imgWrap) {
-    imgWrap.addEventListener('click', () => openModal(fig));
+    imgWrap.addEventListener('click', () => {
+      window.location.href = `/figurine.html?id=${fig.id}`;
+    });
   }
 
   return card;
@@ -242,6 +207,8 @@ function renderCard(fig, index) {
 async function loadFigurines() {
   const grid = document.getElementById('figurine-grid');
   const loading = document.getElementById('loading-state');
+
+  if (!grid) return; // Si on n'est pas sur la page boutique, on ne charge rien
 
   try {
     const res = await fetch('/api/figurines');
@@ -294,52 +261,10 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('mini-cart-overlay')?.addEventListener('click', closeMiniCart);
 
   // Supprimer un item depuis le mini-drawer (event delegation)
-  document.getElementById('mini-cart-body')?.addEventListener('click', e => {
-    const btn = e.target.closest('.mini-cart-remove');
-    if (!btn) return;
-    const id = btn.dataset.id;
-    let cart = getCart().filter(i => i.id !== id);
-    saveCart(cart);
-    // Sync boutons "ajouter" dans la grille
-    const addBtn = document.getElementById(`add-btn-${id}`);
-    if (addBtn) {
-      addBtn.classList.remove('added');
-      addBtn.textContent = '🚀 Drop Pod';
-    }
-  });
-
-  // ── Modal events ──────────────────────────────────────────
-  document.getElementById('modal-close')?.addEventListener('click', closeModal);
-  document.getElementById('figurine-modal-overlay')?.addEventListener('click', closeModal);
-
-  document.getElementById('modal-buy-btn')?.addEventListener('click', () => {
-    if (!currentModalFig) return;
-    addToCart(currentModalFig);
-
-    // Sync boutons "ajouter" dans la grille
-    const addBtn = document.getElementById(`add-btn-${currentModalFig.id}`);
-    if (addBtn) {
-      addBtn.classList.add('added');
-      addBtn.textContent = '✓ Dans le Pod';
-      addBtn.setAttribute('aria-label', 'Figurine déjà dans le Drop Pod');
-    }
-
-    const buyBtn = document.getElementById('modal-buy-btn');
-    if (buyBtn) {
-      buyBtn.classList.add('added');
-      buyBtn.textContent = '✓ Dans le Pod';
-    }
-
-    showToast(`${currentModalFig.nom} ajouté au Drop Pod !`, '🚀');
-    closeModal();
-    openMiniCart();
-  });
-
   // Fermer avec Escape
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
       closeMiniCart();
-      closeModal();
     }
   });
 });

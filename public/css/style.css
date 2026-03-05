@@ -3,7 +3,7 @@
    Grimdark Adeptus Mechanicus × Cute Space Maids
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Dancing+Script:wght@500;700&family=Inter:wght@300;400;500;600&display=swap');
 
 /* ── CSS Custom Properties ─────────────────────────────────── */
 :root {
@@ -31,6 +31,7 @@
   /* Typography */
   --font-gothic: 'Cinzel', 'Times New Roman', serif;
   --font-body: 'Inter', sans-serif;
+  --font-girly: 'Dancing Script', cursive;
 
   /* Spacing */
   --radius-sm: 4px;
@@ -248,6 +249,10 @@ h4 {
   background: linear-gradient(135deg, rgba(244, 167, 195, 0.18), rgba(200, 120, 160, 0.12));
   border-color: var(--border-pink);
   color: var(--text-pink);
+  font-family: var(--font-girly);
+  font-size: 1.1rem;
+  text-transform: none;
+  letter-spacing: normal;
 }
 
 .btn-pink::before {
@@ -390,8 +395,8 @@ h4 {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  font-family: var(--font-gothic);
-  font-size: 0.82rem;
+  font-family: var(--font-girly);
+  font-size: 1.15rem;
   color: var(--text-pink);
   cursor: pointer;
   padding: 0.5rem 1rem;
@@ -473,10 +478,9 @@ h4 {
 
 .hero-tag {
   display: inline-block;
-  font-family: var(--font-body);
-  font-size: 0.7rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
+  font-family: var(--font-girly);
+  font-size: 1.2rem;
+  letter-spacing: 0.05em;
   color: var(--text-pink);
   border: 1px solid rgba(244, 167, 195, 0.4);
   padding: 0.3rem 1rem;
@@ -494,6 +498,10 @@ h4 {
 .hero h1 .pink {
   color: var(--accent-pink);
   text-shadow: 0 0 30px var(--glow-pink);
+  font-family: var(--font-girly);
+  font-size: 1.2em;
+  text-transform: none;
+  font-weight: 700;
 }
 
 .hero-sub {
@@ -692,8 +700,8 @@ h4 {
 }
 
 .card-price {
-  font-family: var(--font-gothic);
-  font-size: 1.1rem;
+  font-family: var(--font-girly);
+  font-size: 1.4rem;
   color: var(--accent-pink);
   display: flex;
   align-items: baseline;
@@ -716,11 +724,10 @@ h4 {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  font-family: var(--font-gothic);
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 0.55rem 1rem;
+  font-family: var(--font-girly);
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+  padding: 0.45rem 1rem;
   border: 1px solid var(--border-pink);
   border-radius: var(--radius-sm);
   background: rgba(244, 167, 195, 0.08);
@@ -792,19 +799,27 @@ h4 {
   border: 1px solid var(--border-pink);
   border-radius: var(--radius-md);
   padding: 0.85rem 1.25rem;
-  font-size: 0.85rem;
+  font-family: var(--font-girly);
+  font-size: 1.15rem;
   color: var(--text-pink);
   box-shadow: 0 0 24px var(--glow-pink), 0 4px 20px rgba(0, 0, 0, 0.5);
   transform: translateY(120%);
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   max-width: 320px;
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  line-height: 1.3;
 }
 
 .toast.show {
   transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
 }
 
 .toast .toast-icon {
@@ -975,8 +990,8 @@ h4 {
 }
 
 .cart-item-price .subtotal {
-  font-family: var(--font-gothic);
-  font-size: 1rem;
+  font-family: var(--font-girly);
+  font-size: 1.3rem;
   color: var(--accent-pink);
 }
 
@@ -1345,8 +1360,8 @@ h4 {
 }
 
 .success-title {
-  font-family: var(--font-gothic);
-  font-size: 1.6rem;
+  font-family: var(--font-girly);
+  font-size: 2.2rem;
   color: var(--accent-pink);
   text-shadow: 0 0 30px var(--glow-pink);
 }
@@ -1525,8 +1540,8 @@ h4 {
 }
 
 .modal-price {
-  font-family: var(--font-gothic);
-  font-size: 1.6rem;
+  font-family: var(--font-girly);
+  font-size: 2.2rem;
   color: var(--accent-pink);
   margin-bottom: 1.5rem;
 }
