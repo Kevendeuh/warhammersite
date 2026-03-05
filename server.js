@@ -16,6 +16,11 @@ app.use('/api/figurines', figurinesRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/orders', ordersRouter);
 
+// Route URLs propres (SEO)
+app.get('/boutique/figurine/:nom', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'figurine.html'));
+});
+
 // Fallback: serve index.html for any unknown route
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));

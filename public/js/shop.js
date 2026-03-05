@@ -196,7 +196,8 @@ function renderCard(fig, index) {
   const imgWrap = card.querySelector('.card-img-wrap');
   if (imgWrap) {
     imgWrap.addEventListener('click', () => {
-      window.location.href = `/figurine.html?id=${fig.id}`;
+      const slug = fig.nom.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '-').replace(/[^\w\-]+/g, '').replace(/\-\-+/g, '-').replace(/^-+/, '').replace(/-+$/, '');
+      window.location.href = `/boutique/figurine/${slug}`;
     });
   }
 

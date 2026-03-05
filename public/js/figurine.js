@@ -1,13 +1,13 @@
 // ── Logique pour figurine.html ────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', async () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get('id');
+    const pathParts = window.location.pathname.split('/');
+    const slug = pathParts[pathParts.length - 1];
 
     const loadingState = document.getElementById('loading-state');
     const detailsBlock = document.getElementById('figurine-details');
 
-    if (!id) {
+    if (!slug || slug === 'figurine') {
         if (loadingState) {
             loadingState.innerHTML = '<div class="error-state"><p>⚠ IDENTIFIANT MANQUANT DANS LA REQUÊTE.</p></div>';
         }
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     try {
-        const res = await fetch(`/api/figurines/${id}`);
+        const res = await fetch(`/api/figurines/slug/${slug}`);
         if (!res.ok) {
             throw new Error('Figurine introuvable');
         }
