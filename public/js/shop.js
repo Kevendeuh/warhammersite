@@ -198,7 +198,7 @@ function renderCard(fig, index) {
     imgWrap.addEventListener('click', () => {
       sessionStorage.setItem('boutiqueScrollY', window.scrollY);
       const slug = fig.nom.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '-').replace(/[^\w\-]+/g, '').replace(/\-\-+/g, '-').replace(/^-+/, '').replace(/-+$/, '');
-      window.location.href = `/boutique/figurine/${slug}`;
+      window.location.href = `/figurines/${slug}`;
     });
   }
 

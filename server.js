@@ -17,10 +17,11 @@ app.use('/api/auth', authRouter);
 app.use('/api/orders', ordersRouter);
 
 // Route URLs propres (SEO)
-app.get('/boutique/figurine/:nom', (req, res) => {
+app.get('/figurines/:nom', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'figurine.html'));
 });
 app.get('/boutique', (req, res) => res.sendFile(path.join(__dirname, 'public', 'boutique.html')));
+app.get('/lore', (req, res) => res.sendFile(path.join(__dirname, 'public', 'lore.html')));
 app.get('/faq', (req, res) => res.sendFile(path.join(__dirname, 'public', 'faq.html')));
 app.get('/login', (req, res) => res.sendFile(path.join(__dirname, 'public', 'login.html')));
 app.get('/checkout', (req, res) => res.sendFile(path.join(__dirname, 'public', 'checkout.html')));
@@ -32,11 +33,11 @@ app.get('*', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`
-  ██████████████████████████████████████████
-  █                                        █
-  █   ADEPTUS MECHANICUS — SERVEUR ACTIF   █
+  █████████████████████████████████████████████████
+  █                                               █
+  █   ADEPTUS MECHANICUS — SERVEUR ACTIF          █
   █   Port: ${PORT}  ✦  WARHAMMER SPACE MAIDS ✦  █
-  █                                        █
-  ██████████████████████████████████████████
+  █                                               █
+  █████████████████████████████████████████████████
   `);
 });
