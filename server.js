@@ -20,6 +20,10 @@ app.use('/api/orders', ordersRouter);
 app.get('/boutique/figurine/:nom', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'figurine.html'));
 });
+app.get('/boutique', (req, res) => res.sendFile(path.join(__dirname, 'public', 'boutique.html')));
+app.get('/faq', (req, res) => res.sendFile(path.join(__dirname, 'public', 'faq.html')));
+app.get('/login', (req, res) => res.sendFile(path.join(__dirname, 'public', 'login.html')));
+app.get('/checkout', (req, res) => res.sendFile(path.join(__dirname, 'public', 'checkout.html')));
 
 // Fallback: serve index.html for any unknown route
 app.get('*', (req, res) => {

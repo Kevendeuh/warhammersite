@@ -793,7 +793,7 @@ h4 {
 .toast {
   position: fixed;
   bottom: 2rem;
-  right: 2rem;
+  left: 50%;
   z-index: 9000;
   background: var(--bg-card);
   border: 1px solid var(--border-pink);
@@ -803,7 +803,7 @@ h4 {
   font-size: 1.15rem;
   color: var(--text-pink);
   box-shadow: 0 0 24px var(--glow-pink), 0 4px 20px rgba(0, 0, 0, 0.5);
-  transform: translateY(120%);
+  transform: translate(-50%, 120%);
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
@@ -816,7 +816,7 @@ h4 {
 }
 
 .toast.show {
-  transform: translateY(0);
+  transform: translate(-50%, 0);
   opacity: 1;
   pointer-events: auto;
   visibility: visible;

@@ -24,9 +24,9 @@
 
             <ul class="nav-links" role="list">
                 <li><a href="/" id="nav-accueil">Accueil</a></li>
-                <li><a href="/boutique.html" id="nav-boutique">Boutique</a></li>
-                <li><a href="/faq.html" id="nav-faq">FAQ</a></li>
-                <li><a href="/login.html" id="nav-auth">Connexion</a></li>
+                <li><a href="/boutique" id="nav-boutique">Boutique</a></li>
+                <li><a href="/faq" id="nav-faq">FAQ</a></li>
+                <li><a href="/login" id="nav-auth">Connexion</a></li>
                 <li><a href="#orders-section" id="nav-orders" style="display:none">Mes Commandes</a></li>
             </ul>
 
@@ -47,7 +47,7 @@
                 <div style="display: flex; flex-wrap: wrap;">
                     <div
                         style="flex: 1; min-width: 300px; background: var(--bg-void); border-right: 1px solid rgba(201, 168, 76, 0.2);">
-                        <img id="detail-img" src="" alt="" style="width: 100%; height: 100%; object-fit: cover;" />
+                        <img id="detail-img" src="" alt="" style="width: 100%; height: 100%; object-fit: contain;" />
                     </div>
                     <div
                         style="flex: 1; min-width: 300px; padding: 3rem 2.5rem; display: flex; flex-direction: column;">
@@ -60,9 +60,11 @@
                         <p id="detail-desc"
                             style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; flex-grow: 1; margin-bottom: 2.5rem;">
                         </p>
-                        <div style="margin-top: auto;">
+                        <div style="margin-top: auto; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
                             <button class="btn btn-strike" id="detail-buy-btn" type="button">🐾 Ajouter au Drop
                                 Pod</button>
+                            <a href="/boutique" class="btn btn-outline"
+                                style="font-size: 0.95rem; padding: 0.4rem 1rem;">← Continuer les achats</a>
                         </div>
                     </div>
                 </div>
@@ -102,7 +104,7 @@
                 <span>Total :</span>
                 <span id="mini-cart-total">0 ₵</span>
             </div>
-            <a href="/checkout.html" class="btn btn-strike" id="mini-cart-go">☄️ Voir le Drop Pod complet</a>
+            <a href="/checkout" class="btn btn-strike" id="mini-cart-go">☄️ Voir le Drop Pod complet</a>
         </div>
     </aside>
 

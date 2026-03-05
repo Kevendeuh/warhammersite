@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             <p style="font-size:0.8rem; color:var(--text-secondary); margin-top:0.5rem; font-family:var(--font-body)">
                 La figurine demandée n'existe pas ou la connexion a échoué.
             </p>
-            <a href="/boutique.html" class="btn btn-outline" style="margin-top:1rem;">← Retour boutique</a>
+            <a href="/boutique" class="btn btn-outline" style="margin-top:1rem;">← Retour boutique</a>
         </div>`;
         }
     }

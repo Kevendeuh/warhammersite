@@ -196,6 +196,7 @@ function renderCard(fig, index) {
   const imgWrap = card.querySelector('.card-img-wrap');
   if (imgWrap) {
     imgWrap.addEventListener('click', () => {
+      sessionStorage.setItem('boutiqueScrollY', window.scrollY);
       const slug = fig.nom.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '-').replace(/[^\w\-]+/g, '').replace(/\-\-+/g, '-').replace(/^-+/, '').replace(/-+$/, '');
       window.location.href = `/boutique/figurine/${slug}`;
     });
@@ -227,6 +228,14 @@ async function loadFigurines() {
 
     figurines.forEach((fig, i) => grid.appendChild(renderCard(fig, i)));
 
+    const scrollY = sessionStorage.getItem('boutiqueScrollY');
+    if (scrollY) {
+      setTimeout(() => {
+        window.scrollTo({ top: parseInt(scrollY, 10), behavior: 'instant' });
+        sessionStorage.removeItem('boutiqueScrollY');
+      }, 50);
+    }
+
   } catch (err) {
     console.error('Erreur chargement figurines:', err);
     if (loading) loading.remove();
@@ -248,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const user = (() => { try { return JSON.parse(localStorage.getItem('sm_user')); } catch { return null; } })();
   if (user) {
     const navAuth = document.getElementById('nav-auth');
-    if (navAuth) { navAuth.textContent = `👤 ${user.prenom}`; navAuth.href = '/login.html'; }
+    if (navAuth) { navAuth.textContent = `👤 ${user.prenom}`; navAuth.href = '/login'; }
   }
 
   // ── Mini cart drawer events ───────────────────────────────
@@ -262,6 +271,19 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('mini-cart-overlay')?.addEventListener('click', closeMiniCart);
 
   // Supprimer un item depuis le mini-drawer (event delegation)
+  document.getElementById('mini-cart-body')?.addEventListener('click', e => {
+    const btn = e.target.closest('.mini-cart-remove');
+    if (!btn) return;
+    const id = btn.dataset.id;
+    let cart = getCart().filter(i => i.id !== id);
+    saveCart(cart);
+    const addBtn = document.getElementById(`add-btn-${id}`);
+    if (addBtn) {
+      addBtn.classList.remove('added');
+      addBtn.textContent = '🐾 Drop Pod';
+    }
+  });
+
   // Fermer avec Escape
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
