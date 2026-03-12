@@ -17,7 +17,27 @@
       "description_lore": "Gardienne de la Narthecium rose, l'Apothicaire Space Maid soigne ses frères d'armes avec une douceur terrifiante. Son sourire est la dernière chose que voient les hérétiques.",
       "prix_credits": 2800,
       "image_url": "/images/apoticary.png",
-      "stock": 15
+      "stock": 15,
+      "commentaires": [
+        {
+          "auteur": "SœurVictrix",
+          "note": 5,
+          "texte": "Figurine magnifique, les détails du Narthecium rose sont incroyables. Très fidèle au lore !",
+          "date": "2026-01-15"
+        },
+        {
+          "auteur": "MagosFinale",
+          "note": 4,
+          "texte": "Très bonne qualité, facile à peindre. Dommage que la pose soit un peu statique.",
+          "date": "2026-02-03"
+        },
+        {
+          "auteur": "HéraultImperial",
+          "note": 5,
+          "texte": "La pièce maîtresse de ma collection ! L'Inquisition approuve.",
+          "date": "2026-02-28"
+        }
+      ]
     },
     {
       "id": "e7098063-4a17-4f52-b7a2-8a6eaebf0045",
@@ -25,7 +45,27 @@
       "description_lore": "Revêtue d'une armure Tactique Terminator customisée en rose, elle distribue des câlins... et des obus de Cyclone. Ses nœuds résistent au vide spatial.",
       "prix_credits": 4200,
       "image_url": "/images/terminator.jpg",
-      "stock": 8
+      "stock": 8,
+      "commentaires": [
+        {
+          "auteur": "ChevalièrePink",
+          "note": 5,
+          "texte": "L'armure Terminator en rose bonbon, c'est du génie. Les obus de Cyclone sont minuscules mais detaillés !",
+          "date": "2026-01-20"
+        },
+        {
+          "auteur": "AdeptusFigurae",
+          "note": 4,
+          "texte": "Superbe figurine premium. Le vernis mat inclus aide beaucoup pour la finition.",
+          "date": "2026-02-10"
+        },
+        {
+          "auteur": "PeintreRuche",
+          "note": 3,
+          "texte": "Belle figurine mais le prix est un peu élevé pour la taille. Les nœuds sont bien sculptés.",
+          "date": "2026-03-01"
+        }
+      ]
     },
     {
       "id": "f8f53b2d-ccbf-43e7-85cc-56fc083fdae8",
@@ -33,7 +73,21 @@
       "description_lore": "Sur sa moto repeinte en rose bonbon, cette Space Maid patrouille les ruches à grande vitesse. Son tablier flotte dans le vent de la guerre.",
       "prix_credits": 3500,
       "image_url": "/images/bike.png",
-      "stock": 12
+      "stock": 12,
+      "commentaires": [
+        {
+          "auteur": "VitesseImperiale",
+          "note": 5,
+          "texte": "Le tablier qui flotte en plastique translucide, c'est un chef d'oeuvre de sculpture ! Livraison rapide.",
+          "date": "2026-01-10"
+        },
+        {
+          "auteur": "PatrouilleurHive",
+          "note": 4,
+          "texte": "Très dynamique, donne vraiment l'impression de vitesse. Parfait pour représenter mes patrouilles.",
+          "date": "2026-02-18"
+        }
+      ]
     },
     {
       "id": "bf86426b-b591-4f52-b6fd-71dd961d1e1a",
@@ -41,7 +95,27 @@
       "description_lore": "Un chef-d'œuvre de propagande bienveillante. Cette figurine projette des images de l'Empereur en tenue de maid. Classé confidentiel par l'Inquisition.",
       "prix_credits": 1900,
       "image_url": "/images/diaporama.png",
-      "stock": 20
+      "stock": 20,
+      "commentaires": [
+        {
+          "auteur": "PropagandistaStar",
+          "note": 4,
+          "texte": "L'Inquisition a failli confisquer la mienne ! Les détails du projecteur holographique sont bluffants.",
+          "date": "2026-01-25"
+        },
+        {
+          "auteur": "GardeImperiale",
+          "note": 5,
+          "texte": "Meilleure figurine budget du catalogue. Le rapport qualité/prix est imbattable.",
+          "date": "2026-02-14"
+        },
+        {
+          "auteur": "MaidFanatic",
+          "note": 4,
+          "texte": "Très originale, parfaite pour décorer un QG ou un drop pod restaurant. Recommandé !",
+          "date": "2026-03-05"
+        }
+      ]
     },
     {
       "id": "d7e1e507-522a-47be-b964-42228ff5758a",
@@ -49,7 +123,27 @@
       "description_lore": "Le Drop Pod le plus redouté du secteur, car il délivre non pas des Space Marines... mais une cuisine de terrain cinq étoiles. L'ennemi capitule de faim.",
       "prix_credits": 5500,
       "image_url": "/images/dropPodRestaurant.png",
-      "stock": 5
+      "stock": 5,
+      "commentaires": [
+        {
+          "auteur": "CuisinierOmnissiah",
+          "note": 5,
+          "texte": "Le plus beau diorama de toute la gamme. Les mini-plats à l'intérieur sont sculptés avec un soin extrême.",
+          "date": "2026-01-30"
+        },
+        {
+          "auteur": "GourmetImperial",
+          "note": 5,
+          "texte": "Achat coup de cœur ! Mon adversaire a effectivement capitulé en voyant la figurine sur la table.",
+          "date": "2026-02-20"
+        },
+        {
+          "auteur": "ServiteurMeca",
+          "note": 4,
+          "texte": "Pièce de collection incontournable. Attention, la porte du Drop Pod est fragile lors du montage.",
+          "date": "2026-03-08"
+        }
+      ]
     },
     {
       "id": "4ffc8093-bad2-4db0-9f54-369263d93470",
@@ -57,7 +151,27 @@
       "description_lore": "Le Chapelain brandit son sceptre crânien et récite les litanies de la délicatesse. Ses sermons durent exactement le temps d'un thé chaud.",
       "prix_credits": 3100,
       "image_url": "/images/chaplain.png",
-      "stock": 10
+      "stock": 10,
+      "commentaires": [
+        {
+          "auteur": "LitaniesSacrees",
+          "note": 5,
+          "texte": "Le sceptre crânien est amovible ! Détail incroyable. Les litanies sont gravées sur le socle en minuscule.",
+          "date": "2026-02-01"
+        },
+        {
+          "auteur": "TheologusTerra",
+          "note": 4,
+          "texte": "Figurine imposante, bien proportionnée. Les runes sur l'armure sont très lisibles même à petite échelle.",
+          "date": "2026-02-22"
+        },
+        {
+          "auteur": "DévotImperial",
+          "note": 5,
+          "texte": "Mon préféré du catalogue ! L'expression du visage est parfaite : douceur terrifiante comme le décrit le lore.",
+          "date": "2026-03-07"
+        }
+      ]
     },
     {
       "id": "99205c1b-69f1-4c0e-a8a6-b4e905e58cde",
@@ -65,7 +179,21 @@
       "description_lore": "Maîtresse de la stratégie en tablier de combat, Tacticus Prima a planifié la reconquête de seize systèmes stellaires entre deux fournées de cookies.",
       "prix_credits": 2600,
       "image_url": "/images/tacticus.png",
-      "stock": 18
+      "stock": 18,
+      "commentaires": [
+        {
+          "auteur": "StratègeAlpha",
+          "note": 4,
+          "texte": "La carte tac-op miniature dans sa main est un bijou de détail. Les cookies sur le socle nous font sourire.",
+          "date": "2026-01-18"
+        },
+        {
+          "auteur": "CommandantHive",
+          "note": 3,
+          "texte": "Bonne figurine mais j'attendais un peu plus de dynamisme dans la pose. Le concept est excellent.",
+          "date": "2026-02-25"
+        }
+      ]
     },
     {
       "id": "89049eb0-ff3c-45fb-a3d6-d877da660bb2",
@@ -73,7 +201,27 @@
       "description_lore": "Descendante divine, Nekona mène ses légions avec une grâce féline. On dit que même le Chaos recule devant ses oreilles de chat et son regard doré.",
       "prix_credits": 9800,
       "image_url": "/images/primarchNekona.png",
-      "stock": 3
+      "stock": 3,
+      "commentaires": [
+        {
+          "auteur": "CollecteurPrimarch",
+          "note": 5,
+          "texte": "La pièce maîtresse absolue ! Les oreilles de chat en métal doré sont juste parfaites. Valeur le prix.",
+          "date": "2026-01-05"
+        },
+        {
+          "auteur": "NékonaMihail",
+          "note": 5,
+          "texte": "J'ai mis 3 heures à la peindre et c'est la plus belle chose que j'ai jamais faite. Légendaire.",
+          "date": "2026-02-12"
+        },
+        {
+          "auteur": "LégionOubliée",
+          "note": 5,
+          "texte": "Impossible de la laisser sur sa base sans la protéger ! Chef-d'oeuvre absolu de la gamme Space Maids.",
+          "date": "2026-03-02"
+        }
+      ]
     },
     {
       "id": "6cc40a53-c821-4d81-82b1-6230f125d98b",
@@ -81,7 +229,27 @@
       "description_lore": "Une armure colossale de la Manufacture Impériale, repeinte en rose par des mains inconnues. Le pilote serait une Space Maid de la 1ère Compagnie. Non confirmé.",
       "prix_credits": 7700,
       "image_url": "/images/hulkbuster.png",
-      "stock": 6
+      "stock": 6,
+      "commentaires": [
+        {
+          "auteur": "ForteresseMobile",
+          "note": 5,
+          "texte": "Monumentale ! L'armure rose avec les griffures de combat dorées, c'est du grand art. Très solide.",
+          "date": "2026-01-22"
+        },
+        {
+          "auteur": "ServiteurArmurie",
+          "note": 4,
+          "texte": "Pièce impressionnante, le cockpit s'ouvre et on voit la Space Maid à l'intérieur ! Bonus génial.",
+          "date": "2026-02-07"
+        },
+        {
+          "auteur": "OmnissiahMeca",
+          "note": 4,
+          "texte": "Figurine de très haute qualité. L'assemblage prend du temps mais le résultat en vaut la chandelle.",
+          "date": "2026-03-04"
+        }
+      ]
     }
   ],
   "orders": []

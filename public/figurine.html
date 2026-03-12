@@ -4,9 +4,100 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Détails Figurine — Armurerie Impériale</title>
-    <meta name="description" content="Détails de la figurine Space Maids sélectionnée." />
+    <title id="page-title">Figurine Space Maids Warhammer 40K — Armurerie Impériale</title>
+    <meta name="description" id="page-description"
+        content="Découvrez les détails de cette figurine Space Maids Warhammer 40K : lore, prix en crédits impériaux, avis des collectionneurs et ajout au Drop Pod." />
+    <meta name="keywords" content="figurine Space Maids détails, Warhammer 40K collection, achat figurine 40K" />
+    <link rel="canonical" id="page-canonical" href="https://armurerie-space-maids.com/figurines" />
     <link rel="stylesheet" href="/css/style.css" />
+    <style>
+        /* ── Section commentaires déroulante ── */
+        .reviews-details {
+            margin-top: 2rem;
+            border-top: 1px solid rgba(201, 168, 76, 0.2);
+            padding-top: 1.5rem;
+        }
+
+        .reviews-summary {
+            font-family: var(--font-gothic);
+            font-size: 1rem;
+            color: var(--text-gold);
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.5rem 0;
+            user-select: none;
+        }
+
+        .reviews-summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .reviews-summary::before {
+            content: '▶';
+            font-size: 0.7rem;
+            transition: transform 0.25s ease;
+            color: var(--accent-pink);
+        }
+
+        details[open] .reviews-summary::before {
+            transform: rotate(90deg);
+        }
+
+        .reviews-list {
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .review-item {
+            background: rgba(201, 168, 76, 0.04);
+            border: 1px solid rgba(201, 168, 76, 0.15);
+            border-radius: var(--radius-sm, 6px);
+            padding: 0.9rem 1.1rem;
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.4rem;
+            flex-wrap: wrap;
+        }
+
+        .review-author {
+            font-family: var(--font-gothic);
+            font-size: 0.85rem;
+            color: var(--text-gold);
+        }
+
+        .review-stars {
+            color: #f4a7c3;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .review-date {
+            font-size: 0.72rem;
+            color: var(--text-secondary);
+            margin-left: auto;
+        }
+
+        .review-text {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.55;
+        }
+
+        .no-reviews {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-style: italic;
+        }
+    </style>
 </head>
 
 <body>
@@ -24,7 +115,7 @@
 
             <ul class="nav-links" role="list">
                 <li><a href="/" id="nav-accueil">Accueil</a></li>
-                <li><a href="/boutique" id="nav-boutique">Boutique</a></li>
+                <li><a href="/figurines" id="nav-boutique">Figurines</a></li>
                 <li><a href="/faq" id="nav-faq">FAQ</a></li>
                 <li><a href="/lore" id="nav-lore">Lore</a></li>
                 <li><a href="/login" id="nav-auth">Connexion</a></li>
@@ -56,17 +147,32 @@
                             style="font-family: var(--font-gothic); font-size: 2.2rem; color: var(--text-gold); margin-bottom: 0.5rem; line-height: 1.2;">
                         </h1>
                         <p id="detail-price"
-                            style="font-family: var(--font-girly); font-size: 2.2rem; color: var(--accent-pink); margin-bottom: 1.5rem;">
+                            style="font-family: var(--font-girly); font-size: 2.2rem; color: var(--accent-pink); margin-bottom: 0.25rem;">
                         </p>
+                        <!-- Note globale -->
+                        <p id="detail-global-rating"
+                            style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem;"></p>
+
                         <p id="detail-desc"
-                            style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; flex-grow: 1; margin-bottom: 2.5rem;">
+                            style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; flex-grow: 1; margin-bottom: 1.5rem;">
                         </p>
-                        <div style="margin-top: auto; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+
+                        <!-- Boutons achat -->
+                        <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
                             <button class="btn btn-strike" id="detail-buy-btn" type="button">🐾 Ajouter au Drop
                                 Pod</button>
-                            <a href="/boutique" class="btn btn-outline"
+                            <a href="/figurines" class="btn btn-outline"
                                 style="font-size: 0.95rem; padding: 0.4rem 1rem;">← Continuer les achats</a>
                         </div>
+
+                        <!-- Section commentaires déroulante -->
+                        <details class="reviews-details" id="reviews-details">
+                            <summary class="reviews-summary">Avis des collectionneurs</summary>
+                            <div class="reviews-list" id="reviews-list">
+                                <p class="no-reviews">Aucun avis pour cette figurine.</p>
+                            </div>
+                        </details>
+
                     </div>
                 </div>
             </div>

@@ -2,7 +2,12 @@
    SHOP.JS — Boutique Space Maids (Vanilla JS)
    - Grille de figurines + ajout au panier
    - Mini cart drawer (tiroir latéral)
+   - Note globale sous chaque vignette
+   - Support multi-langue (/fr et /en)
    ============================================================ */
+
+// ── Langue ───────────────────────────────────────────────────
+const LANG = window.location.pathname.startsWith('/en') ? 'en' : 'fr';
 
 // ── Shared Utilities ─────────────────────────────────────────
 function showToast(msg, icon = '🎀') {
@@ -15,6 +20,23 @@ function showToast(msg, icon = '🎀') {
   toast.classList.add('show');
   clearTimeout(toast._timeout);
   toast._timeout = setTimeout(() => toast.classList.remove('show'), 3200);
+}
+
+// ── Note globale (étoiles) ────────────────────────────────────
+function calcAvgRating(commentaires) {
+  if (!commentaires || commentaires.length === 0) return null;
+  const sum = commentaires.reduce((acc, c) => acc + c.note, 0);
+  return sum / commentaires.length;
+}
+
+function renderStars(avg, count) {
+  if (avg === null) return '';
+  const full = Math.round(avg);
+  const stars = '★'.repeat(full) + '☆'.repeat(5 - full);
+  const label = LANG === 'en'
+    ? `${avg.toFixed(1)}/5 (${count} review${count > 1 ? 's' : ''})`
+    : `${avg.toFixed(1)}/5 (${count} avis)`;
+  return `<span class="card-rating" aria-label="${label}" title="${label}">${stars} <small>${avg.toFixed(1)}</small></span>`;
 }
 
 // ── Cart State ────────────────────────────────────────────────
@@ -88,7 +110,7 @@ function renderMiniCart() {
     body.innerHTML = `
           <div class="mini-cart-empty">
             <span aria-hidden="true">🐾</span>
-            <p>Le Drop Pod est vide.</p>
+            <p>${LANG === 'en' ? 'The Drop Pod is empty.' : 'Le Drop Pod est vide.'}</p>
           </div>`;
     if (totalEl) totalEl.textContent = '0 ₵';
     if (goBtn) goBtn.style.display = 'none';
@@ -136,13 +158,18 @@ function closeMiniCart() {
   drawer?.setAttribute('aria-hidden', 'true');
 }
 
-// Modal logic has been moved to individual figurine pages
-
 // ── Render figurine card ──────────────────────────────────────
 function renderCard(fig, index) {
   const cart = getCart();
   const inCart = cart.some(i => i.id === fig.id);
   const isLowStock = fig.stock <= 5;
+
+  const avg = calcAvgRating(fig.commentaires);
+  const starsHtml = renderStars(avg, fig.commentaires ? fig.commentaires.length : 0);
+
+  const addLabel = LANG === 'en'
+    ? (inCart ? 'Already in Drop Pod' : `Add ${fig.nom} to Drop Pod`)
+    : (inCart ? 'Figurine déjà dans le Drop Pod' : `Ajouter ${fig.nom} au Drop Pod`);
 
   const card = document.createElement('article');
   card.className = 'card stagger-in fade-in';
@@ -150,9 +177,12 @@ function renderCard(fig, index) {
   card.setAttribute('role', 'listitem');
   card.setAttribute('aria-label', fig.nom);
 
+  const slug = fig.nom.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '-').replace(/[^\w\-]+/g, '').replace(/\-\-+/g, '-').replace(/^-+/, '').replace(/-+$/, '');
+  const detailUrl = (LANG === 'en' ? '/en' : '') + `/figurines/${slug}`;
+
   card.innerHTML = `
-    <div class="card-img-wrap">
-      <img src="${fig.image_url}" alt="${fig.nom}" loading="lazy"
+    <div class="card-img-wrap" role="link" tabindex="0" aria-label="Voir les détails de ${fig.nom}" style="cursor:pointer">
+      <img src="${fig.image_url}" alt="${fig.nom} — figurine Warhammer 40K Space Maids" loading="lazy"
            onerror="this.src='/images/placeholder.png'; this.alt='Image non disponible'" />
       <span class="card-stock-badge ${isLowStock ? 'badge-low' : 'badge-ok'}" aria-label="Stock: ${fig.stock}">
         ${isLowStock ? '⚠ ' + fig.stock + ' restants' : '✦ En stock'}
@@ -160,6 +190,7 @@ function renderCard(fig, index) {
     </div>
     <div class="card-body">
       <h3 class="card-title">${fig.nom}</h3>
+      ${starsHtml ? `<div class="card-rating-wrap">${starsHtml}</div>` : ''}
       <p class="card-lore">${fig.description_lore}</p>
       <div class="card-footer">
         <div class="card-price">
@@ -171,7 +202,7 @@ function renderCard(fig, index) {
           class="btn-add ${inCart ? 'added' : ''}"
           id="add-btn-${fig.id}"
           data-id="${fig.id}"
-          aria-label="${inCart ? 'Figurine déjà dans le Drop Pod' : 'Ajouter ' + fig.nom + ' au Drop Pod'}"
+          aria-label="${addLabel}"
           type="button"
         >
           ${inCart ? '✓ Dans le Pod' : '🐾 Drop Pod'}
@@ -186,20 +217,20 @@ function renderCard(fig, index) {
     addToCart(fig);
     btn.classList.add('added');
     btn.textContent = '✓ Dans le Pod';
-    btn.setAttribute('aria-label', 'Figurine déjà dans le Drop Pod');
-    showToast(`${fig.nom} ajouté au Drop Pod !`, '🐾');
-    // Ouvrir automatiquement le mini-drawer
+    btn.setAttribute('aria-label', LANG === 'en' ? 'Already in Drop Pod' : 'Figurine déjà dans le Drop Pod');
+    showToast(`${fig.nom} ${LANG === 'en' ? 'added to Drop Pod!' : 'ajouté au Drop Pod !'}`, '🐾');
     openMiniCart();
   });
 
   // Clic sur l'image pour rediriger vers la page dédiée
   const imgWrap = card.querySelector('.card-img-wrap');
   if (imgWrap) {
-    imgWrap.addEventListener('click', () => {
+    const goToDetail = () => {
       sessionStorage.setItem('boutiqueScrollY', window.scrollY);
-      const slug = fig.nom.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '-').replace(/[^\w\-]+/g, '').replace(/\-\-+/g, '-').replace(/^-+/, '').replace(/-+$/, '');
-      window.location.href = `/figurines/${slug}`;
-    });
+      window.location.href = detailUrl;
+    };
+    imgWrap.addEventListener('click', goToDetail);
+    imgWrap.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') goToDetail(); });
   }
 
   return card;
@@ -210,7 +241,7 @@ async function loadFigurines() {
   const grid = document.getElementById('figurine-grid');
   const loading = document.getElementById('loading-state');
 
-  if (!grid) return; // Si on n'est pas sur la page boutique, on ne charge rien
+  if (!grid) return;
 
   try {
     const res = await fetch('/api/figurines');
@@ -290,4 +321,16 @@ document.addEventListener('DOMContentLoaded', () => {
       closeMiniCart();
     }
   });
+
+  // ── Ajouter styles dynamiques pour la note ────────────────
+  if (!document.getElementById('rating-styles')) {
+    const style = document.createElement('style');
+    style.id = 'rating-styles';
+    style.textContent = `
+      .card-rating-wrap { margin: 0.3rem 0 0.5rem; }
+      .card-rating { font-size: 0.85rem; color: var(--accent-pink); }
+      .card-rating small { color: var(--text-secondary); font-size: 0.75rem; margin-left: 0.25rem; }
+    `;
+    document.head.appendChild(style);
+  }
 });
