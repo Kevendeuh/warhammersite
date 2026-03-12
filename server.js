@@ -423,8 +423,8 @@ function renderFigurineDetail(lang, slug) {
     <div class="container" style="max-width: 900px;">
       <div style="background: var(--bg-card); border: 1px solid var(--border-gold); border-radius: var(--radius-md); overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.5);">
         <div style="display: flex; flex-wrap: wrap;">
-          <div style="flex: 1; min-width: 300px; background: var(--bg-void); border-right: 1px solid rgba(201,168,76,0.2);">
-            <img src="${fig.image_url}" alt="${fig.nom} — figurine Warhammer 40K Space Maids" width="800" height="800" loading="lazy" style="width: 100%; height: 100%; object-fit: contain;" />
+          <div style="flex: 1; min-width: 300px; background: var(--bg-void); border-right: 1px solid rgba(201,168,76,0.2); display: flex; align-items: center; justify-content: center; padding: 2rem;">
+            <img src="${fig.image_url}" alt="${fig.nom} — figurine Warhammer 40K Space Maids" width="800" height="800" loading="lazy" style="max-width: 100%; max-height: 500px; object-fit: contain;" />
           </div>
           <div style="flex: 1; min-width: 300px; padding: 3rem 2.5rem; display: flex; flex-direction: column;">
             <h1 id="detail-title" style="font-family: var(--font-gothic); font-size: 2.2rem; color: var(--text-gold); margin-bottom: 0.5rem; line-height: 1.2;">${fig.nom}${lang === 'en' ? ' <span style="font-size:1rem; opacity:0.8;">Miniature</span>' : ''}</h1>
@@ -436,7 +436,7 @@ function renderFigurineDetail(lang, slug) {
                 data-id="${fig.id}" data-nom="${fig.nom}" data-image="${fig.image_url}" data-prix="${fig.prix_credits}">
                 🐾 ${lang === 'en' ? 'Add to Drop Pod' : 'Ajouter au Drop Pod'}
               </button>
-              <a href="/${lang}/figurines" class="btn btn-outline" style="font-size: 0.95rem; padding: 0.4rem 1rem;">← ${lang === 'en' ? 'Continue shopping' : 'Continuer les achats'}</a>
+              <a href="/${lang}/figurines" id="btn-back" class="btn btn-outline" style="font-size: 0.95rem; padding: 0.4rem 1rem;">← ${lang === 'en' ? 'Continue shopping' : 'Continuer les achats'}</a>
             </div>
             <details class="reviews-details">
               <summary class="reviews-summary">${summaryLabel}</summary>
@@ -633,7 +633,10 @@ function renderLogin(lang) {
         <span class="logo-sigil" aria-hidden="true">⚙</span>
         <span>ARMURERIE IMPÉRIALE<span class="subtitle">Space Maids Division ✦ 40.000</span></span>
       </a>
-      <a href="/${lang}/figurines" class="btn btn-outline" style="font-size:0.75rem;">← ${lang === 'en' ? 'Miniatures' : 'Figurines'}</a>
+      <div style="display: flex; gap: 1rem; align-items: center;">
+        <a href="/${lang === 'en' ? 'fr' : 'en'}/login" class="btn-lang" aria-label="Changer de langue" title="Switch to ${lang === 'en' ? 'FR' : 'EN'}">${lang === 'en' ? '🇫🇷 FR' : '🇬🇧 EN'}</a>
+        <a href="/${lang}/figurines" class="btn btn-outline" style="font-size:0.75rem;">← ${lang === 'en' ? 'Miniatures' : 'Figurines'}</a>
+      </div>
     </div>
   </nav>
   <main class="auth-page" id="main-content">

@@ -33,4 +33,14 @@ document.addEventListener('DOMContentLoaded', () => {
         showToast(`${fig.nom} ${lang === 'en' ? 'added to Drop Pod!' : 'ajouté au Drop Pod !'}`, '🐾');
         openMiniCart();
     });
+
+    const btnBack = document.getElementById('btn-back');
+    if (btnBack) {
+        btnBack.addEventListener('click', (e) => {
+            if (window.history.length > 1 && document.referrer.includes('/figurines')) {
+                e.preventDefault();
+                window.history.back();
+            }
+        });
+    }
 });
