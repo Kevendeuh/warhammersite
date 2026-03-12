@@ -26,6 +26,15 @@
       "mot_de_passe": "$2a$10$cbYnMQG8v4JAPGUhFl.1OeQFT1w/okvygQsyNBw9aL38jbnvaou0W",
       "adresse_postale": "s",
       "created_at": "2026-03-12T13:18:26.275Z"
+    },
+    {
+      "id": "a1535877-c0e7-4dd3-a76f-d2c30f35213d",
+      "nom": "D'Hem",
+      "prenom": "Romain",
+      "email": "romain.dhem@gmail.com",
+      "mot_de_passe": "$2a$10$FGECH.nPWi0UX7HDzCCUzOU8di3h1Z4s8NhAqS73jK0uiaK9Q8NN2",
+      "adresse_postale": "lol",
+      "created_at": "2026-03-12T13:46:02.605Z"
     }
   ],
   "figurines": [
