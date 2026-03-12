@@ -735,6 +735,60 @@ app.get('/en/boutique', (req, res) => res.redirect(301, '/en/figurines'));
   app.get(`/${lang}/checkout`, (req, res) => res.sendFile(path.join(__dirname, 'public', 'checkout.html')));
 });
 
+app.get('/sitemap.xml', (req, res) => {
+  const figurines = getFigurines();
+  let urls = '';
+
+  ['fr', 'en'].forEach(lang => {
+    // Pages principales
+    urls += `
+  <url>
+    <loc>${BASE_URL}/${lang}/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>${BASE_URL}/${lang}/figurines</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>${BASE_URL}/${lang}/faq</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>${BASE_URL}/${lang}/lore</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>${BASE_URL}/${lang}/login</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>`;
+
+    // Pages figurines individuelles
+    figurines.forEach(fig => {
+      const slug = slugify(fig.nom);
+      urls += `
+  <url>
+    <loc>${BASE_URL}/${lang}/figurines/${slug}</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>`;
+    });
+  });
+
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls}
+</urlset>`;
+
+  res.setHeader('Content-Type', 'application/xml');
+  res.send(sitemap);
+});
+
 // Fichiers statiques (dossier public : css, images, js) servis avec fallback
 app.use(express.static(path.join(__dirname, 'public'), { index: false }));
 
