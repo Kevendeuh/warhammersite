@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
     <title>Connexion aux Archives Impériales — Espace Compte Space Maids</title>
     <meta name="description"
-        content="Connectez-vous à votre compte Armurerie Impériale Space Maids pour accéder à vos commandes de figurines Warhammer 40K, votre historique et vos avantages impériaux." />
+        content="Connectez-vous à votre compte Space Maids pour accéder à vos commandes de figurines Warhammer 40K." />
     <meta name="keywords" content="connexion Space Maids, compte Armurerie Impériale, accès archives Warhammer 40K" />
-    <link rel="canonical" href="http://localhost:3000/fr/login" />
     <link rel="stylesheet" href="/css/style.css" />
 </head>
 
@@ -34,7 +34,7 @@
             <div class="auth-header">
                 <span class="auth-sigil" aria-hidden="true">🎀</span>
                 <h1>ARCHIVES IMPÉRIALES</h1>
-                <p>Identifiez-vous pour accéder aux archives de l'Adeptus Figurinae</p>
+                <h2 style="font-size: 1.1rem; font-weight: normal; margin-top: 0.5rem; color: var(--text-gold);">Identifiez-vous pour accéder aux archives de l'Adeptus Figurinae</h2>
             </div>
 
             <!-- Tabs -->
@@ -75,6 +75,24 @@
                     Pas encore enrôlé ?
                     <a href="#" id="goto-register" style="color:var(--text-pink)">Rejoindre les rangs</a>
                 </p>
+
+                <div
+                    style="margin-top: 2rem; padding: 1.5rem; background: rgba(201,168,76,0.05); border: 1px solid var(--border-gold); border-radius: var(--radius-sm); font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">
+                    <strong
+                        style="color: var(--text-gold); font-family: var(--font-gothic); font-size: 1rem; display: block; margin-bottom: 0.5rem;">Pourquoi
+                        s'enrôler dans les Archives Impériales ?</strong>
+                    <p style="margin-bottom: 0.5rem;">Rejoindre l'Armurerie Impériale et créer votre compte d'accès aux Archives
+                        (Space Maids Division) vous offre des avantages tactiques considérables pour vos acquisitions de
+                        figurines Warhammer 40K. En vous enregistrant, l'Inquisition valide plus rapidement votre identité, ce
+                        qui accélère drastiquement le protocole de déploiement en Drop Pod (livraison sous 4 à 7 cycles
+                        stellaires). De plus, l'accès à ce terminal sécurisé vous permet de consulter l'historique complet de
+                        vos ordres de réquisition passés, de pister l'arrivée de vos renforts en orbite, et de sauvegarder vos
+                        coordonnées de cités-ruches pour des commandes futures.</p>
+                    <p>Seuls les membres certifiés de l'Adeptus Figurinae bénéficient du suivi privilégié et de l'assistance
+                        prioritaire du Mechanicus en cas d'avarie lors du largage atmosphérique. Gardez votre code d'accès en
+                        sécurité et méfiez-vous des hérésies numériques. Gloire à l'Empereur et bonne collection !</p>
+                    <p style="margin-top: 0.5rem;">Notre force réside dans la loyauté et la fidélité de chaque commandant sur le terrain. En vous enregistrant officiellement auprès des registres de la sainte inquisition, vous contribuez directement à l'effort de guerre stellaire. L'Armurerie Impériale met un point d'honneur à recenser tous les commandants de flottes et stratèges d'élite. Les informations recueillies dans cette archive nous permettent de forger de nouvelles armures énergétiques toujours plus robustes et de distribuer les renforts là où l'hérésie frappe le plus durement. Votre engagement n'est pas qu'une simple formalité administrative, c'est un serment d'allégeance envers l'Empereur-Dieu et l'ensemble de l'Imperium de l'Humanité. Rejoignez les rangs des millions de joueurs et de passionnés de modélisme Warhammer 40,000 qui font vivre la flamme de la résistance galactique.</p>
+                </div>
             </div>
 
             <!-- REGISTER FORM -->
@@ -127,6 +145,7 @@
             </div>
 
         </div>
+
     </main>
 
     <div class="toast" id="toast" role="alert" aria-live="assertive">

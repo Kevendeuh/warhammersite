@@ -8,6 +8,24 @@
       "mot_de_passe": "$2a$10$QTMMucLzDBWuIJZziguXIeFbP9uuuwPL3PcobDmkr57bOu1toqmg.",
       "adresse_postale": "8 Rue des Carmes,",
       "created_at": "2026-03-05T12:57:16.373Z"
+    },
+    {
+      "id": "cbb8f3c6-b52a-4fc2-bc9b-e25788f466bd",
+      "nom": "qds",
+      "prenom": "sdq",
+      "email": "qds@gmail.com",
+      "mot_de_passe": "$2a$10$EzOMVykig3eJPKD8nJkDAOmR3oK3wCCmZ0pjHPcFjeRgdkQf9ugv6",
+      "adresse_postale": "s",
+      "created_at": "2026-03-12T13:17:17.727Z"
+    },
+    {
+      "id": "255d491c-a409-4a63-8300-a95ba34719ef",
+      "nom": "qds",
+      "prenom": "sdq",
+      "email": "test@gmail.com",
+      "mot_de_passe": "$2a$10$cbYnMQG8v4JAPGUhFl.1OeQFT1w/okvygQsyNBw9aL38jbnvaou0W",
+      "adresse_postale": "s",
+      "created_at": "2026-03-12T13:18:26.275Z"
     }
   ],
   "figurines": [
@@ -16,7 +34,7 @@
       "nom": "Apothicaire Bienveillant",
       "description_lore": "Gardienne de la Narthecium rose, l'Apothicaire Space Maid soigne ses frères d'armes avec une douceur terrifiante. Son sourire est la dernière chose que voient les hérétiques.",
       "prix_credits": 2800,
-      "image_url": "/images/apoticary.png",
+      "image_url": "/images/apoticary.webp",
       "stock": 15,
       "commentaires": [
         {
@@ -72,7 +90,7 @@
       "nom": "Chevaucheur de Moto de Service",
       "description_lore": "Sur sa moto repeinte en rose bonbon, cette Space Maid patrouille les ruches à grande vitesse. Son tablier flotte dans le vent de la guerre.",
       "prix_credits": 3500,
-      "image_url": "/images/bike.png",
+      "image_url": "/images/bike.webp",
       "stock": 12,
       "commentaires": [
         {
@@ -94,7 +112,7 @@
       "nom": "Diaporama de Gloire Impériale",
       "description_lore": "Un chef-d'œuvre de propagande bienveillante. Cette figurine projette des images de l'Empereur en tenue de maid. Classé confidentiel par l'Inquisition.",
       "prix_credits": 1900,
-      "image_url": "/images/diaporama.png",
+      "image_url": "/images/diaporama.webp",
       "stock": 20,
       "commentaires": [
         {
@@ -122,7 +140,7 @@
       "nom": "Drop Pod Restaurant",
       "description_lore": "Le Drop Pod le plus redouté du secteur, car il délivre non pas des Space Marines... mais une cuisine de terrain cinq étoiles. L'ennemi capitule de faim.",
       "prix_credits": 5500,
-      "image_url": "/images/dropPodRestaurant.png",
+      "image_url": "/images/dropPodRestaurant.webp",
       "stock": 5,
       "commentaires": [
         {
@@ -150,7 +168,7 @@
       "nom": "Chapelain de la Très Sainte Douceur",
       "description_lore": "Le Chapelain brandit son sceptre crânien et récite les litanies de la délicatesse. Ses sermons durent exactement le temps d'un thé chaud.",
       "prix_credits": 3100,
-      "image_url": "/images/chaplain.png",
+      "image_url": "/images/chaplain.webp",
       "stock": 10,
       "commentaires": [
         {
@@ -175,10 +193,10 @@
     },
     {
       "id": "99205c1b-69f1-4c0e-a8a6-b4e905e58cde",
-      "nom": "Tacticus Prima",
+      "nom": "Tacticus Prima de Service",
       "description_lore": "Maîtresse de la stratégie en tablier de combat, Tacticus Prima a planifié la reconquête de seize systèmes stellaires entre deux fournées de cookies.",
       "prix_credits": 2600,
-      "image_url": "/images/tacticus.png",
+      "image_url": "/images/tacticus.webp",
       "stock": 18,
       "commentaires": [
         {
@@ -200,7 +218,7 @@
       "nom": "Primarch Nekona l'Éternelle",
       "description_lore": "Descendante divine, Nekona mène ses légions avec une grâce féline. On dit que même le Chaos recule devant ses oreilles de chat et son regard doré.",
       "prix_credits": 9800,
-      "image_url": "/images/primarchNekona.png",
+      "image_url": "/images/primarchNekona.webp",
       "stock": 3,
       "commentaires": [
         {
@@ -228,7 +246,7 @@
       "nom": "Hulkbuster Cuirassé de Service",
       "description_lore": "Une armure colossale de la Manufacture Impériale, repeinte en rose par des mains inconnues. Le pilote serait une Space Maid de la 1ère Compagnie. Non confirmé.",
       "prix_credits": 7700,
-      "image_url": "/images/hulkbuster.png",
+      "image_url": "/images/hulkbuster.webp",
       "stock": 6,
       "commentaires": [
         {

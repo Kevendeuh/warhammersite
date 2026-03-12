@@ -77,7 +77,7 @@ function renderFigurineCard(fig, lang) {
   return `
   <article class="card" role="listitem" aria-label="${fig.nom}" data-fig-id="${fig.id}">
     <a href="${detailUrl}" class="card-img-wrap" aria-label="Voir les détails de ${fig.nom}">
-      <img src="${fig.image_url}" alt="${fig.nom} — figurine Warhammer 40K Space Maids" loading="lazy" />
+      <img src="${fig.image_url}" alt="${fig.nom} — figurine Warhammer 40K Space Maids" width="800" height="800" loading="lazy" />
       <span class="card-stock-badge ${isLowStock ? 'badge-low' : 'badge-ok'}" aria-label="Stock: ${fig.stock}">
         ${isLowStock ? '⚠ ' + fig.stock + ' restants' : '✦ En stock'}
       </span>
@@ -154,7 +154,7 @@ function miniCartHtml() {
   return `<div id="mini-cart-overlay" aria-hidden="true"></div>
   <aside id="mini-cart" role="dialog" aria-modal="true" aria-label="Aperçu du Drop Pod" aria-hidden="true">
     <div class="mini-cart-header">
-      <h2>🐾 Drop Pod</h2>
+      <strong style="font-size: 1.5rem; font-family: var(--font-gothic); color: var(--text-gold);">🐾 Drop Pod</strong>
       <button class="mini-cart-close" id="mini-cart-close" type="button" aria-label="Fermer le panier">✕</button>
     </div>
     <div class="mini-cart-body" id="mini-cart-body"></div>
@@ -192,11 +192,11 @@ function hreflangLinks(lang, path_fr, path_en) {
 // ── PAGE : Accueil ────────────────────────────────────────────
 function renderIndex(lang) {
   const title = lang === 'en'
-    ? 'Imperial Armory Space Maids — Warhammer 40K Miniatures'
-    : 'Armurerie Impériale Space Maids — Figurines Warhammer 40K';
+    ? 'Space Maids 40K Miniatures | Imperial Armory'
+    : 'Figurines Space Maids 40K | Armurerie Impériale';
   const desc = lang === 'en'
-    ? 'Discover the Imperial Armory Space Maids: elite Warhammer 40K miniatures with roses and bows. Apothecaries, Terminators, Primarch Nekona and more. Imperial credits accepted.'
-    : 'Découvrez l\'Armurerie Impériale Space Maids : boutique de figurines Warhammer 40K d\'élite ornées de roses et de nœuds. Apothicaires, Terminators, Primarch Nekona et bien plus. Crédits impériaux acceptés.';
+    ? 'Discover the Imperial Armory: elite Space Maids Warhammer 40K miniatures. Apothecaries, Terminators, and Primarch Nekona.'
+    : 'Boutique de figurines d\'élite Warhammer 40K Space Maids. Découvrez nos Apothicaires, Terminators et Primarch Nekona.';
 
   return `<!DOCTYPE html>
 <html lang="${lang}">
@@ -214,7 +214,7 @@ function renderIndex(lang) {
   <header class="hero" role="banner">
     <div class="container">
       <p class="hero-tag">✦ Archives de l'Adeptus Figurinae ✦</p>
-      <h1>ARMURERIE <span class="pink">SPACE MAIDS</span></h1>
+      <h1>${lang === 'en' ? 'IMPERIAL ARMORY' : 'ARMURERIE'} <span class="pink">SPACE MAIDS</span></h1>
       <p class="hero-sub">Terminal de Commande Impériale — Secteur : Figurines d'Élite<br><em>Que l'Empereur guide vos acquisitions</em></p>
       <blockquote class="hero-lore" aria-label="Citation du lore">
         "Elles combattent avec une grâce implacable, leurs tabliers immaculés résistant à tout plasma bolt.
@@ -227,7 +227,7 @@ function renderIndex(lang) {
   <main id="main-content" class="shop-section">
     <div class="container">
       <div class="section-header">
-        <h2>⚜ LE PRIMARCH PERDU ⚜</h2>
+        <h2>⚜ ${lang === 'en' ? 'THE LOST PRIMARCH' : 'LE PRIMARCH PERDU'} ⚜</h2>
         <p>Hérésie selon l'Inquisition, Révélation selon d'autres. L'histoire de Nekona l'Éternelle.</p>
       </div>
       <div style="background: var(--bg-card); border: 1px solid rgba(244, 167, 195, 0.3); border-radius: var(--radius-md); padding: 2.5rem; max-width: 800px; margin: 0 auto;">
@@ -248,6 +248,12 @@ function renderIndex(lang) {
         <div style="text-align: center; margin-top: 2rem;">
           <a href="/${lang}/figurines" class="btn btn-pink">${lang === 'en' ? 'View Miniature Catalogue' : 'Voir le Catalogue des figurines'}</a>
         </div>
+        </div>
+        <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(201,168,76,0.3); color: var(--text-secondary); font-size: 0.85rem; line-height: 1.6; text-align: justify;">
+          <h3 style="color: var(--text-gold); font-family: var(--font-gothic); font-size: 1.1rem; margin-bottom: 0.8rem;">Bienvenue dans l'Armurerie Impériale - Division Space Maids</h3>
+          <p style="margin-bottom: 0.8rem;">L'Armurerie Impériale est votre source de confiance pour acquérir les figurines les plus exclusives et redoutables de l'univers de Warhammer 40,000. Notre division spécialisée "Space Maids" propose une gamme unique de guerrières d'élite, alliant la puissance dévastatrice des armures énergétiques à l'élégance tactique des tabliers de combat renforcés. Chaque figurine est minutieusement détaillée, des bolters lourds ornés de rubans aux Nartheciums curatifs roses, offrant aux collectionneurs et aux joueurs de table une expérience visuelle et ludique sans précédent.</p>
+          <p>Que vous cherchiez à renforcer votre armée impériale avec un Apothicaire Bienveillant, à écraser l'hérésie avec notre Terminator Mignon Suprême, ou à commander vos troupes sous l'égide de la légendaire Primarch Nekona l'Éternelle, notre catalogue saura satisfaire les exigences des stratèges les plus pointilleux. Toutes nos commandes sont traitées avec la plus grande rigueur par l'Adeptus Mechanicus et expédiées via notre système de livraison rapide par Drop Pod orbitale. Engagez-vous dès aujourd'hui, accumulez les crédits impériaux et montrez à la galaxie entière que la loyauté envers l'Empereur peut s'exprimer avec une grâce implacable.</p>
+        </div>
       </div>
     </div>
   </main>
@@ -262,11 +268,11 @@ function renderIndex(lang) {
 function renderCatalogue(lang) {
   const figurines = getFigurines();
   const title = lang === 'en'
-    ? 'Warhammer 40K Space Maids Miniatures Catalogue — Imperial Armory'
-    : 'Catalogue de Figurines Space Maids Warhammer 40K — Armurerie Impériale';
+    ? 'Space Maids Miniatures Catalogue | Imperial Armory'
+    : 'Catalogue Figurines Space Maids | Armurerie Impériale';
   const desc = lang === 'en'
-    ? 'Browse the complete Space Maids Warhammer 40K miniatures catalogue: Apothecaries, Terminators, Primarch Nekona, Drop Pod Restaurant and more. Buy with imperial credits.'
-    : 'Parcourez le catalogue complet des figurines Space Maids Warhammer 40K : Apothicaires, Terminators, Primarch Nekona, Drop Pod Restaurant et bien plus. Achetez avec des crédits impériaux.';
+    ? 'Browse the complete Space Maids Warhammer 40K miniatures catalogue: Apothecaries, Terminators, and Primarch Nekona.'
+    : 'Catalogue complet des figurines Space Maids Warhammer 40K : Apothicaires, Terminators, Primarch Nekona et autres.';
 
   const cardsHtml = figurines.map(fig => renderFigurineCard(fig, lang)).join('\n');
   const h1 = lang === 'en' ? 'MINIATURES <span class="pink">CATALOGUE</span>' : 'CATALOGUE DE <span class="pink">FIGURINES</span>';
@@ -310,6 +316,14 @@ function renderCatalogue(lang) {
       </div>
       <div class="figurine-grid" id="figurine-grid" role="list" aria-label="Grille de figurines">
         ${cardsHtml}
+      </div>
+      <div style="margin-top: 3rem; padding: 1.5rem; background: rgba(201,168,76,0.05); border-radius: var(--radius-sm); border: 1px solid var(--border-gold); color: var(--text-secondary); font-size: 0.85rem; line-height: 1.7;">
+        <h3 style="color: var(--text-gold); font-family: var(--font-gothic); font-size: 1.1rem; margin-bottom: 0.5rem; text-align: center;">Développez votre collection de Space Maids 40K</h3>
+        <p style="text-align: justify;">Parcourez notre catalogue exclusif de figurines Warhammer 40,000 dédiées à la légendaire et secrète Légion des Space Maids. Des unités d'assaut rapide comme le Chevaucheur de Moto de Service aux mastodontes blindés tels que le Hulkbuster Cuirassé de Service, chaque pièce est conçue pour apporter une touche d'héroïsme pink-grimdark à vos champs de bataille. Ajoutez ces chefs-d'œuvre à votre panier de Drop Pod et préparez-vous à peindre l'hérésie aux couleurs de l'Imperium. N'oubliez pas de consulter les avis de nos fidèles collectionneurs pour guider vos choix stratégiques !</p>
+      </div>
+      <div style="margin-top: 3rem; padding: 1.5rem; background: rgba(201,168,76,0.05); border-radius: var(--radius-sm); border: 1px solid var(--border-gold); color: var(--text-secondary); font-size: 0.85rem; line-height: 1.7;">
+        <h3 style="color: var(--text-gold); font-family: var(--font-gothic); font-size: 1.1rem; margin-bottom: 0.5rem; text-align: center;">Développez votre collection de Space Maids 40K</h3>
+        <p style="text-align: justify;">Parcourez notre catalogue exclusif de figurines Warhammer 40,000 dédiées à la légendaire et secrète Légion des Space Maids. Des unités d'assaut rapide comme le Chevaucheur de Moto de Service aux mastodontes blindés tels que le Hulkbuster Cuirassé de Service, chaque pièce est conçue pour apporter une touche d'héroïsme pink-grimdark à vos champs de bataille. Ajoutez ces chefs-d'œuvre à votre panier de Drop Pod et préparez-vous à peindre l'hérésie aux couleurs de l'Imperium. N'oubliez pas de consulter les avis de nos fidèles collectionneurs pour guider vos choix stratégiques !</p>
       </div>
     </div>
   </main>
@@ -361,11 +375,11 @@ function renderFigurineDetail(lang, slug) {
     : `Avis des collectionneurs (${count})`;
 
   const title = lang === 'en'
-    ? `${fig.nom} — Warhammer 40K Space Maids Miniature | Imperial Armory`
-    : `${fig.nom} — Figurine Warhammer 40K Space Maids | Armurerie Impériale`;
+    ? `${fig.nom.substring(0, 25)} | Imperial Armory`
+    : `${fig.nom.substring(0, 30)} | Armurerie`;
   const desc = lang === 'en'
-    ? `Buy the ${fig.nom} Space Maids Warhammer 40K miniature. ${fig.description_lore.substring(0, 120)}... Price: ${fig.prix_credits.toLocaleString()} imperial credits.`
-    : `Achetez la figurine ${fig.nom} Space Maids Warhammer 40K. ${fig.description_lore.substring(0, 120)}... Prix : ${fig.prix_credits.toLocaleString('fr-FR')} crédits impériaux.`;
+    ? `Buy the ${fig.nom} miniature. ${fig.description_lore.substring(0, 80)}...`
+    : `Achetez la figurine ${fig.nom}. ${fig.description_lore.substring(0, 80)}...`;
 
   const ratingHtml = avg !== null
     ? `<p id="detail-global-rating" aria-label="Note globale : ${avg.toFixed(1)}/5">
@@ -410,10 +424,10 @@ function renderFigurineDetail(lang, slug) {
       <div style="background: var(--bg-card); border: 1px solid var(--border-gold); border-radius: var(--radius-md); overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.5);">
         <div style="display: flex; flex-wrap: wrap;">
           <div style="flex: 1; min-width: 300px; background: var(--bg-void); border-right: 1px solid rgba(201,168,76,0.2);">
-            <img src="${fig.image_url}" alt="${fig.nom} — figurine Warhammer 40K Space Maids" style="width: 100%; height: 100%; object-fit: contain;" />
+            <img src="${fig.image_url}" alt="${fig.nom} — figurine Warhammer 40K Space Maids" width="800" height="800" loading="lazy" style="width: 100%; height: 100%; object-fit: contain;" />
           </div>
           <div style="flex: 1; min-width: 300px; padding: 3rem 2.5rem; display: flex; flex-direction: column;">
-            <h1 id="detail-title" style="font-family: var(--font-gothic); font-size: 2.2rem; color: var(--text-gold); margin-bottom: 0.5rem; line-height: 1.2;">${fig.nom}</h1>
+            <h1 id="detail-title" style="font-family: var(--font-gothic); font-size: 2.2rem; color: var(--text-gold); margin-bottom: 0.5rem; line-height: 1.2;">${fig.nom}${lang === 'en' ? ' <span style="font-size:1rem; opacity:0.8;">Miniature</span>' : ''}</h1>
             <p id="detail-price" style="font-family: var(--font-girly); font-size: 2.2rem; color: var(--accent-pink); margin-bottom: 0.25rem;">${fig.prix_credits.toLocaleString('fr-FR')} ₵</p>
             ${ratingHtml}
             <p id="detail-desc" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; flex-grow: 1; margin-bottom: 1.5rem;">${fig.description_lore}</p>
@@ -428,6 +442,11 @@ function renderFigurineDetail(lang, slug) {
               <summary class="reviews-summary">${summaryLabel}</summary>
               <div class="reviews-list">${reviewsHtml}</div>
             </details>
+            <div style="margin-top: 2.5rem; border-top: 1px dotted rgba(201,168,76,0.3); padding-top: 1.5rem; color: var(--text-secondary); font-size: 0.8rem; line-height: 1.5;">
+              <h2 style="color: var(--text-gold); font-family: var(--font-gothic); font-size: 1rem; margin-top: 0; margin-bottom: 0.5rem; font-weight: bold;">${lang === 'en' ? 'About ' + fig.nom : 'À propos de ' + fig.nom}</h2>
+              <p style="margin-bottom: 0.5rem;">Cette figurine hautement détaillée fait partie de la collection non-sanctionnée mais tolérée des "Space Maids" pour l'univers de Warhammer 40K. Conçue en résine de haute qualité et en céra-plastique béni par le Mechanicus, elle nécessite un assemblage soigné et une mise en peinture digne de l'Adeptus Ministorum. Les modèles sont fournis non peints et peuvent nécessiter un ébavurage mineur avant l'application de votre sous-couche (le Chaos Black ou le Corax White sont recommandés avant l'application des teintes roses caractéristiques).</p>
+              <p>Que ce soit pour être exposée fièrement dans votre vitrine reliquaire ou déployée sur les tables de jeu lors de vos campagnes scénarisées, cette unité apportera une synergie tactique et morale incomparable à vos forces armées. Attention : de petites pièces peuvent présenter un risque d'étouffement pour les jeunes recrues de moins de 36 mois standard. L'Inquisition décline toute responsabilité en cas d'hérésie accidentelle causée par une exposition prolongée aux ondes mignonnes.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -444,11 +463,11 @@ function renderFigurineDetail(lang, slug) {
 // ── PAGE : FAQ ────────────────────────────────────────────────
 function renderFaq(lang) {
   const title = lang === 'en'
-    ? 'FAQ — Questions about Space Maids Warhammer 40K Miniatures | Imperial Armory'
-    : 'FAQ — Questions sur les Figurines Space Maids Warhammer 40K | Armurerie Impériale';
+    ? 'FAQ Space Maids Miniatures | Imperial Armory'
+    : 'FAQ Figurines Space Maids | Armurerie Impériale';
   const desc = lang === 'en'
-    ? 'All answers to your questions about Space Maids Warhammer 40K miniatures: orbital delivery, painting, loyalty to the Emperor, and more. Inquisition-approved answers.'
-    : 'Toutes les réponses à vos questions sur les figurines Space Maids Warhammer 40K : livraison par frappe orbitale, peinture, fidélité à l\'Empereur, et bien plus. Réponses approuvées par l\'Inquisition.';
+    ? 'Answers to your questions about Space Maids Warhammer 40K miniatures: orbital delivery, painting, and Inquisition rules.'
+    : 'Toutes les réponses à vos questions sur les figurines Space Maids 40K : livraison, peinture, fidélité à l\'Empereur.';
 
   return `<!DOCTYPE html>
 <html lang="${lang}">
@@ -471,15 +490,21 @@ function renderFaq(lang) {
   <header style="padding: 2.5rem 1.5rem 0; text-align:center">
     <div class="container">
       <p class="hero-tag">✦ Registre des Interrogations Fréquentes ✦</p>
-      <h1 style="font-size: clamp(1.5rem,3vw,2.5rem); margin-bottom: 0.5rem;">FOIRE AUX <span class="pink">QUESTIONS</span></h1>
-      <h2 style="font-size: clamp(1rem,1.5vw,1.3rem); font-weight:normal; color:var(--text-secondary); margin-bottom:1rem;">
-        ${lang === 'en' ? 'Inquisition-approved answers about our Warhammer 40K miniatures' : 'Les réponses agréées par l\'Inquisition sur nos figurines Warhammer 40K'}
+      <h1 style="font-size: clamp(1.5rem,3vw,2.5rem); margin-bottom: 0.5rem;">${lang === 'en' ? 'FREQUENTLY ASKED <span class="pink">QUESTIONS</span>' : 'FOIRE AUX <span class="pink">QUESTIONS</span>'}</h1>
+      <h2 style="font-size: clamp(1.1rem,1.5vw,1.3rem); font-weight:normal; color:var(--text-secondary); margin-bottom:0.5rem; margin-top:0;">
+        ${lang === 'en' ? 'Warhammer 40K Inquisition Guidelines' : 'Directives de l\'Inquisition (WH40K)'}
       </h2>
+      <p style="font-size: 1rem; color:var(--text-secondary); margin-bottom:1rem;">
+        ${lang === 'en' ? 'Inquisition-approved answers about our Warhammer 40K miniatures' : 'Les réponses agréées par l\'Inquisition sur nos figurines Warhammer 40K'}
+      </p>
     </div>
     <hr class="gold-rule" style="max-width:600px; margin:0 auto 1rem;">
   </header>
   <main id="main-content" class="shop-section">
     <div class="container" style="max-width: 800px;">
+      <div style="margin-bottom: 2rem; padding: 1.5rem; background: rgba(244,167,195,0.05); border-left: 3px solid var(--accent-pink); border-radius: var(--radius-sm); color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
+        <p>Bienvenue dans le centre de connaissances de l'Armurerie Impériale. En tant que fournisseurs officiels d'équipements sanctifiés et de figurines de collection Warhammer 40,000 pour la division Space Maids, nous recevons d'innombrables requêtes de la part des commandants de tout l'Imperium. Afin d'alléger la charge de travail de nos Servitors cogitateurs, l'Inquisition a compilé ici les réponses aux interrogations les plus fréquentes concernant nos produits, nos méthodes de livraison par frappe orbitale et la place de cette légion si particulière dans le lore galactique. Protocole de lecture : Autorisé.</p>
+      </div>
       <div style="margin-bottom: 2rem;">
         <div class="faq-item">
           <h3 class="faq-q">Où vont l'argent de mes crédits impériaux ?</h3>
@@ -498,6 +523,9 @@ function renderFaq(lang) {
           <p class="faq-a">Partout, mais il est recommandé d'utiliser des teintes "Purity Pink" et "Clean White" pour l'approbation du Chapitre. L'ajout de marquages de Hello Kitty nécessite cependant une dérogation du Magos concerné.</p>
         </div>
       </div>
+      <div style="margin-top: 2rem; text-align: center; border-top: 1px solid var(--border-gold); padding-top: 1.5rem; color: var(--text-secondary); font-size: 0.85rem;">
+        <p>Si vos interrogations persistent malgré cette sainte documentation, n'hésitez pas à lancer un appel Astropathique vers notre service clientèle ou à consulter la <a href="/${lang}/lore" style="color:var(--text-pink)">bibliothèque du Lore</a> pour approfondir vos connaissances sur les origines mystérieuses de Primarch Nekona et de ses dévouées guerrières. La poursuite de la vérité est le premier pas vers l'hérésie, alors assurez-vous de rester sur les chemins balisés par la lumière de l'Astronomican.</p>
+      </div>
     </div>
   </main>
   ${footerHtml()}
@@ -510,11 +538,11 @@ function renderFaq(lang) {
 // ── PAGE : Lore ───────────────────────────────────────────────
 function renderLore(lang) {
   const title = lang === 'en'
-    ? 'Warhammer 40K Lore — The Heresy of Nekona and the Space Maids | Imperial Armory'
-    : 'Lore Warhammer 40K — L\'Hérésie de Nekona et les Space Maids | Armurerie Impériale';
+    ? 'Warhammer 40K Lore - The Space Maids | Imperial Armory'
+    : 'Lore 40K - Les Space Maids | Armurerie Impériale';
   const desc = lang === 'en'
-    ? 'Discover the lore of Warhammer 40K and the secret history of Primarch Nekona, founder of the Space Maids. Chronicles from the Great Crusade to the Indomitus Era.'
-    : 'Découvrez le lore de Warhammer 40K et l\'histoire secrète du Primarch Nekona, fondatrice des Space Maids. Chroniques de la Grande Croisade à l\'Ère Indomitus, la légion oubliée révélée.';
+    ? 'Discover the lore of Warhammer 40K and the history of Primarch Nekona, founder of the secret Space Maids legion.'
+    : 'Découvrez le lore de Warhammer 40K et l\'histoire de Primarch Nekona, fondatrice de la légion secrète des Space Maids.';
 
   return `<!DOCTYPE html>
 <html lang="${lang}">
@@ -532,8 +560,9 @@ function renderLore(lang) {
   <section id="lore-universe" style="background: var(--bg-void); padding: 5rem 1rem; border-top: 1px solid var(--border-gold);">
     <div class="container" style="max-width: 900px;">
       <div class="section-header">
-        <h1>⚜ CHRONIQUES D'UN PRIMARCH OUBLIÉ ⚜</h1>
-        <h2 style="font-size: 1.2rem; font-weight:normal; color:var(--text-secondary);">Comprendre l'univers de <a href="https://omnis-bibliotheca.com/index.php/Accueil" target="_blank" rel="noopener noreferrer" style="color:var(--text-gold);text-decoration:underline;">Warhammer 40,000</a> et l'hérésie de Nekona l'Éternelle</h2>
+        <h1>⚜ ${lang === 'en' ? 'CHRONICLES OF A LOST PRIMARCH' : 'CHRONIQUES D\'UN PRIMARCH OUBLIÉ'} ⚜</h1>
+        <h2 style="font-size: 1.3rem; font-weight: normal; color: var(--accent-pink); margin-top: 0; margin-bottom: 0.5rem;">${lang === 'en' ? 'Warhammer 40K History & Lore' : 'Histoire et Lore Warhammer 40K'}</h2>
+        <p style="font-size: 1rem; font-weight:normal; color:var(--text-secondary); margin-bottom:1rem;">Comprendre l'univers de <a href="https://omnis-bibliotheca.com/index.php/Accueil" target="_blank" rel="noopener noreferrer" style="color:var(--text-gold);text-decoration:underline;">Warhammer 40,000</a> et l'hérésie de Nekona l'Éternelle</p>
       </div>
       <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 3rem; text-align: justify;">
         L'univers de <a href="https://omnis-bibliotheca.com/index.php/Accueil" target="_blank" rel="noopener noreferrer" style="color: var(--text-gold); text-decoration: underline;">Warhammer 40,000</a>
@@ -592,8 +621,8 @@ function renderLogin(lang) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>${lang === 'en' ? 'Login — Imperial Archives Space Maids Account' : 'Connexion aux Archives Impériales — Espace Compte Space Maids'}</title>
-  <meta name="description" content="${lang === 'en' ? 'Log in to your Imperial Armory Space Maids account to access your Warhammer 40K miniature orders, history and imperial benefits.' : 'Connectez-vous à votre compte Armurerie Impériale Space Maids pour accéder à vos commandes de figurines Warhammer 40K, votre historique et vos avantages impériaux.'}" />
+  <title>${lang === 'en' ? 'Login to Imperial Armory Space Maids' : 'Connexion | Armurerie Impériale'}</title>
+  <meta name="description" content="${lang === 'en' ? 'Log in to your Imperial Armory Space Maids account to access your miniature orders and imperial benefits.' : 'Connectez-vous à votre compte Space Maids pour accéder à vos commandes de figurines Warhammer 40K.'}" />
   <link rel="canonical" href="${BASE_URL}/${lang}/login" />
   <link rel="stylesheet" href="/css/style.css" />
 </head>
@@ -611,8 +640,11 @@ function renderLogin(lang) {
     <div class="auth-card fade-in">
       <div class="auth-header">
         <span class="auth-sigil" aria-hidden="true">🎀</span>
-        <h1>ARCHIVES IMPÉRIALES</h1>
-        <p>Identifiez-vous pour accéder aux archives de l'Adeptus Figurinae</p>
+        <h1>${lang === 'en' ? 'IMPERIAL ARCHIVES' : 'ARCHIVES IMPÉRIALES'}</h1>
+        <h2 style="font-size: 1.1rem; font-weight: normal; margin-top: 0.5rem; color: var(--text-gold);">${lang === 'en' ? 'Identify yourself to access the Adeptus Figurinae archives' : 'Identifiez-vous pour accéder aux archives de l\'Adeptus Figurinae'}</h2>
+        <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem;">
+          ${lang === 'en' ? 'By logging in, you secure your connection to the Inquisition servers. This guarantees full protection of your Warhammer 40K collection data.' : 'En vous connectant, vous sécurisez votre liaison avec les serveurs de l\'Inquisition. Cela garantit une protection absolue des données liées à votre collection Warhammer 40K.'}
+        </p>
       </div>
       <div class="auth-tabs" role="tablist" aria-label="Connexion ou inscription">
         <button class="auth-tab active" id="tab-login" role="tab" aria-selected="true" aria-controls="panel-login" type="button">Connexion</button>
@@ -633,6 +665,20 @@ function renderLogin(lang) {
           <button class="btn btn-gold" type="submit" id="login-btn" style="width:100%; justify-content:center; margin-top:0.5rem;">SE CONNECTER AUX ARCHIVES</button>
         </form>
         <p style="text-align:center; font-size:0.75rem; color:var(--text-secondary); margin-top:1rem;">Pas encore enrôlé ? <a href="#" id="goto-register" style="color:var(--text-pink)">Rejoindre les rangs</a></p>
+        
+        <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(201,168,76,0.05); border: 1px solid var(--border-gold); border-radius: var(--radius-sm); font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">
+            ${lang === 'en' ? `
+                <strong style="color: var(--text-gold); font-family: var(--font-gothic); font-size: 1rem; display: block; margin-bottom: 0.5rem;">Why enlist in the Imperial Archives?</strong>
+                <p style="margin-bottom: 0.5rem;">Joining the Imperial Armory and creating your Archive access account (Space Maids Division) offers considerable tactical advantages for your Warhammer 40K miniatures acquisitions. By registering, the Inquisition validates your identity more quickly, drastically accelerating the Drop Pod deployment protocol (delivery within 4 to 7 stellar cycles). In addition, access to this secure terminal allows you to consult the complete history of your past requisition orders, track the arrival of your orbital reinforcements, and save your hive-city coordinates for future orders.</p>
+                <p>Only certified members of the Adeptus Figurinae benefit from privileged tracking and priority assistance from the Mechanicus in the event of damage during atmospheric drops. Keep your access code safe and beware of digital heresies. Glory to the Emperor and happy collecting!</p>
+                <p style="margin-top: 0.5rem;">Our strength lies in the loyalty and faithfulness of every commander on the field. By officially registering with the holy inquisition's records, you contribute directly to the stellar war effort. The Imperial Armory makes it a point of honor to record all fleet commanders and elite strategists. The information gathered in this archive allows us to forge ever stronger power armor and distribute reinforcements where heresy strikes hardest. Your commitment is not a mere administrative formality; it is an oath of allegiance to the God-Emperor and the entire Imperium of Man. Join the ranks of millions of players and Warhammer 40,000 modeling enthusiasts who keep the flame of galactic resistance alive.</p>
+            ` : `
+                <strong style="color: var(--text-gold); font-family: var(--font-gothic); font-size: 1rem; display: block; margin-bottom: 0.5rem;">Pourquoi s'enrôler dans les Archives Impériales ?</strong>
+                <p style="margin-bottom: 0.5rem;">Rejoindre l'Armurerie Impériale et créer votre compte d'accès aux Archives (Space Maids Division) vous offre des avantages tactiques considérables pour vos acquisitions de figurines Warhammer 40K. En vous enregistrant, l'Inquisition valide plus rapidement votre identité, ce qui accélère drastiquement le protocole de déploiement en Drop Pod (livraison sous 4 à 7 cycles stellaires). De plus, l'accès à ce terminal sécurisé vous permet de consulter l'historique complet de vos ordres de réquisition passés, de pister l'arrivée de vos renforts en orbite, et de sauvegarder vos coordonnées de cités-ruches pour des commandes futures.</p>
+                <p>Seuls les membres certifiés de l'Adeptus Figurinae bénéficient du suivi privilégié et de l'assistance prioritaire du Mechanicus en cas d'avarie lors du largage atmosphérique. Gardez votre code d'accès en sécurité et méfiez-vous des hérésies numériques. Gloire à l'Empereur et bonne collection !</p>
+                <p style="margin-top: 0.5rem;">Notre force réside dans la loyauté et la fidélité de chaque commandant sur le terrain. En vous enregistrant officiellement auprès des registres de la sainte inquisition, vous contribuez directement à l'effort de guerre stellaire. L'Armurerie Impériale met un point d'honneur à recenser tous les commandants de flottes et stratèges d'élite. Les informations recueillies dans cette archive nous permettent de forger de nouvelles armures énergétiques toujours plus robustes et de distribuer les renforts là où l'hérésie frappe le plus durement. Votre engagement n'est pas qu'une simple formalité administrative, c'est un serment d'allégeance envers l'Empereur-Dieu et l'ensemble de l'Imperium de l'Humanité. Rejoignez les rangs des millions de joueurs et de passionnés de modélisme Warhammer 40,000 qui font vivre la flamme de la résistance galactique.</p>
+            `}
+        </div>
       </div>
       <div class="auth-form-panel" id="panel-register" role="tabpanel" aria-labelledby="tab-register">
         <div class="auth-error" id="register-error" role="alert"></div>
@@ -698,7 +744,6 @@ app.listen(PORT, () => {
   █                                               █
   █   ADEPTUS MECHANICUS — SERVEUR ACTIF          █
   █   Port: ${PORT}  ✦  WARHAMMER SPACE MAIDS ✦  █
-  █   SSR: ACTIVÉ ✦ Hreflang: CORRIGÉ ✦          █
   █                                               █
   █████████████████████████████████████████████████
   `);
