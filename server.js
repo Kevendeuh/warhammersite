@@ -31,7 +31,7 @@ app.use((req, res, next) => {
 });
 
 // ── Fichiers statiques ────────────────────────────────────────
-app.use(express.static(path.join(__dirname, 'public')));
+// Déplacé APRÈS les routes pour éviter que Express serve public/index.html sur / au lieu de la redirection 301
 
 // ── Routes API ────────────────────────────────────────────────
 app.use('/api/figurines', figurinesRouter);
@@ -180,9 +180,10 @@ function footerHtml() {
   </footer>`;
 }
 
-function hreflangLinks(path_fr, path_en) {
+function hreflangLinks(lang, path_fr, path_en) {
+  const canonicalPath = lang === 'en' ? path_en : path_fr;
   return `
-  <link rel="canonical" href="${BASE_URL}${path_fr}" />
+  <link rel="canonical" href="${BASE_URL}${canonicalPath}" />
   <link rel="alternate" hreflang="fr" href="${BASE_URL}${path_fr}" />
   <link rel="alternate" hreflang="en" href="${BASE_URL}${path_en}" />
   <link rel="alternate" hreflang="x-default" href="${BASE_URL}${path_fr}" />`;
@@ -205,7 +206,7 @@ function renderIndex(lang) {
   <title>${title}</title>
   <meta name="description" content="${desc}" />
   <meta name="keywords" content="figurines Warhammer 40K, Space Maids, figurines collection, Primarch Nekona, Adeptus Mechanicus" />
-  ${hreflangLinks('/fr/', '/en/')}
+  ${hreflangLinks(lang, '/fr/', '/en/')}
   <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
@@ -282,7 +283,7 @@ function renderCatalogue(lang) {
   <title>${title}</title>
   <meta name="description" content="${desc}" />
   <meta name="keywords" content="figurines Space Maids, catalogue Warhammer 40K, acheter figurines 40K, Primarch Nekona, collection Space Marines" />
-  ${hreflangLinks('/fr/figurines', '/en/figurines')}
+  ${hreflangLinks(lang, '/fr/figurines', '/en/figurines')}
   <link rel="stylesheet" href="/css/style.css" />
   <style>
     .card-img-wrap { cursor: pointer; display: block; }
@@ -457,7 +458,7 @@ function renderFaq(lang) {
   <title>${title}</title>
   <meta name="description" content="${desc}" />
   <meta name="keywords" content="FAQ figurines Warhammer, Space Maids questions, peinture figurines 40K" />
-  ${hreflangLinks('/fr/faq', '/en/faq')}
+  ${hreflangLinks(lang, '/fr/faq', '/en/faq')}
   <link rel="stylesheet" href="/css/style.css" />
   <style>
     .faq-item { background: rgba(201,168,76,0.05); border: 1px solid rgba(201,168,76,0.2); border-radius: var(--radius-md); margin-bottom: 1rem; padding: 1.5rem; }
@@ -523,7 +524,7 @@ function renderLore(lang) {
   <title>${title}</title>
   <meta name="description" content="${desc}" />
   <meta name="keywords" content="lore Warhammer 40K, Primarch Nekona, Space Maids histoire, Grande Croisade, Hérésie Horus, Ère Indomitus" />
-  ${hreflangLinks('/fr/lore', '/en/lore')}
+  ${hreflangLinks(lang, '/fr/lore', '/en/lore')}
   <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
@@ -684,6 +685,9 @@ app.get('/en/boutique', (req, res) => res.redirect(301, '/en/figurines'));
   app.get(`/${lang}/login`, (req, res) => res.send(renderLogin(lang)));
   app.get(`/${lang}/checkout`, (req, res) => res.sendFile(path.join(__dirname, 'public', 'checkout.html')));
 });
+
+// Fichiers statiques (dossier public : css, images, js) servis avec fallback
+app.use(express.static(path.join(__dirname, 'public'), { index: false }));
 
 // Fallback
 app.get('*', (req, res) => res.redirect(301, '/fr/'));
