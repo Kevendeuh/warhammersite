@@ -109,12 +109,13 @@ function renderFigurineCard(fig, lang) {
 }
 
 // ── Template HTML commun ──────────────────────────────────────
-function navHtml(lang, activePage) {
+function navHtml(lang, activePage, altPath) {
   const pages = {
-    accueil: { fr: '/', en: '/en/', label: lang === 'en' ? 'Home' : 'Accueil' },
+    accueil: { fr: '/fr/', en: '/en/', label: lang === 'en' ? 'Home' : 'Accueil' },
     figurines: { fr: '/fr/figurines', en: '/en/figurines', label: lang === 'en' ? 'Miniatures' : 'Figurines' },
     faq: { fr: '/fr/faq', en: '/en/faq', label: 'FAQ' },
     lore: { fr: '/fr/lore', en: '/en/lore', label: 'Lore' },
+    blog: { fr: '/fr/blog', en: '/en/blog', label: lang === 'en' ? 'News' : 'Blog' },
     login: { fr: '/fr/login', en: '/en/login', label: lang === 'en' ? 'Login' : 'Connexion' },
   };
 
@@ -125,7 +126,8 @@ function navHtml(lang, activePage) {
   }).join('\n        ');
 
   const otherLang = lang === 'en' ? 'fr' : 'en';
-  const otherHref = lang === 'en' ? '/fr/' : '/en/';
+  // Smart language switch: use provided altPath, or fall back to homepage
+  const otherHref = altPath || (lang === 'en' ? '/fr/' : '/en/');
   const langLabel = lang === 'en' ? '🇫🇷 FR' : '🇬🇧 EN';
 
   return `<nav class="nav" role="navigation" aria-label="Navigation principale">
@@ -210,7 +212,7 @@ function renderIndex(lang) {
   <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-  ${navHtml(lang, 'accueil')}
+  ${navHtml(lang, 'accueil', lang === 'en' ? '/fr/' : '/en/')}
   <header class="hero" role="banner">
     <div class="container">
       <p class="hero-tag">✦ Archives de l'Adeptus Figurinae ✦</p>
@@ -299,7 +301,7 @@ function renderCatalogue(lang) {
   </style>
 </head>
 <body>
-  ${navHtml(lang, 'figurines')}
+  ${navHtml(lang, 'figurines', lang === 'en' ? '/fr/figurines' : '/en/figurines')}
   <header class="hero" role="banner">
     <div class="container">
       <p class="hero-tag">✦ Archives de l'Adeptus Figurinae ✦</p>
@@ -418,7 +420,7 @@ function renderFigurineDetail(lang, slug) {
   </style>
 </head>
 <body>
-  ${navHtml(lang, 'figurines')}
+  ${navHtml(lang, 'figurines', lang === 'en' ? `/fr/figurines/${slug}` : `/en/figurines/${slug}`)}
   <main id="main-content" class="shop-section">
     <div class="container" style="max-width: 900px;">
       <div style="background: var(--bg-card); border: 1px solid var(--border-gold); border-radius: var(--radius-md); overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.5);">
@@ -486,7 +488,7 @@ function renderFaq(lang) {
   </style>
 </head>
 <body>
-  ${navHtml(lang, 'faq')}
+  ${navHtml(lang, 'faq', lang === 'en' ? '/fr/faq' : '/en/faq')}
   <header style="padding: 2.5rem 1.5rem 0; text-align:center">
     <div class="container">
       <p class="hero-tag">✦ Registre des Interrogations Fréquentes ✦</p>
@@ -556,7 +558,7 @@ function renderLore(lang) {
   <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-  ${navHtml(lang, 'lore')}
+  ${navHtml(lang, 'lore', lang === 'en' ? '/fr/lore' : '/en/lore')}
   <section id="lore-universe" style="background: var(--bg-void); padding: 5rem 1rem; border-top: 1px solid var(--border-gold);">
     <div class="container" style="max-width: 900px;">
       <div class="section-header">
@@ -607,6 +609,91 @@ function renderLore(lang) {
       </div>
     </div>
   </section>
+  ${footerHtml()}
+  ${miniCartHtml()}
+  <script src="/js/shop.js"></script>
+</body>
+</html>`;
+}
+
+// ── PAGE : Blog / News ──────────────────────────────────────────
+function renderBlog(lang) {
+  const title = lang === 'en'
+    ? 'News & Announcements | Imperial Armory Space Maids'
+    : 'Actualités & Annonces | Armurerie Impériale Space Maids';
+  const desc = lang === 'en'
+    ? 'Discover the latest transmissions, upcoming miniature releases, and works in progress from the Imperial Armory Space Maids division.'
+    : 'Découvrez les dernières transmissions, les prochaines sorties de figurines et les projets en cours de la division Space Maids de l\'Armurerie Impériale.';
+
+  return `<!DOCTYPE html>
+<html lang="${lang}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${title}</title>
+  <meta name="description" content="${desc}" />
+  ${hreflangLinks(lang, '/fr/blog', '/en/blog')}
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    .blog-article { background: rgba(201,168,76,0.03); border: 1px solid rgba(201,168,76,0.15); border-radius: var(--radius-md); padding: 2rem; margin-bottom: 2.5rem; }
+    .blog-date { color: var(--accent-pink); font-family: var(--font-girly); font-size: 0.9rem; letter-spacing: 1px; display: block; margin-bottom: 0.5rem; }
+    .blog-title { color: var(--text-gold); font-family: var(--font-gothic); font-size: 1.8rem; margin-bottom: 1rem; line-height: 1.2; }
+    .blog-content { color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem; }
+    .blog-tag { display: inline-block; background: rgba(244,167,195,0.1); color: var(--accent-pink); padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.75rem; margin-bottom: 1rem; border: 1px solid rgba(244,167,195,0.3); }
+  </style>
+</head>
+<body>
+  ${navHtml(lang, 'blog', lang === 'en' ? '/fr/blog' : '/en/blog')}
+  
+  <header style="padding: 3rem 1.5rem 1rem; text-align:center">
+    <div class="container">
+      <p class="hero-tag">✦ ${lang === 'en' ? 'Astropathic Transmissions' : 'Transmissions Astropathiques'} ✦</p>
+      <h1 style="font-size: clamp(2rem,4vw,3rem); margin-bottom: 0.5rem;">
+        ${lang === 'en' ? 'IMPERIAL <span class="pink">NEWS</span>' : 'ACTUALITÉS <span class="pink">IMPÉRIALES</span>'}
+      </h1>
+      <h2 style="font-size: clamp(1rem,1.5vw,1.2rem); font-weight:normal; color:var(--text-secondary); margin-top:0; margin-bottom:2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+        ${lang === 'en' ? 'Latest dispatches from the Adeptus Figurinae' : 'Dernières dépêches de l\'Adeptus Figurinae'}
+      </h2>
+    </div>
+    <hr class="gold-rule" style="max-width:800px; margin:0 auto 2rem;">
+  </header>
+
+  <main id="main-content" class="shop-section" style="padding-top: 0;">
+    <div class="container" style="max-width: 800px;">
+
+      <article class="blog-article">
+        <span class="blog-date">04.144.M42</span>
+        <span class="blog-tag">Teasing</span>
+        <h3 class="blog-title">${lang === 'en' ? 'Incoming Transmission: The Heavy Support Maids' : 'Transmission Imminente : Les "Heavy Support Maids"'}</h3>
+        <div class="blog-content">
+          <p>${lang === 'en' ? 'Fleet Commanders, prepare your Drop Pod landing zones. The Adeptus Mechanicus has just authorized the mass production of a highly anticipated new squad: the <strong>Heavy Support Maids</strong>. These formidable warriors combine the classic Space Maids dedication to cleanliness and devotion with the raw firepower of a heavy bolter squad.' : 'Commandants de flotte, préparez vos zones d\'atterrissage de Drop Pods. L\'Adeptus Mechanicus vient d\'autoriser la production en série d\'une toute nouvelle escouade très attendue : les <strong>Heavy Support Maids</strong>. Ces redoutables guerrières allient le dévouement classique des Space Maids à la puissance de feu brute d\'une escouade de bolters lourds.'}</p>
+          <p>${lang === 'en' ? 'Equipped with heavy bolters painted in tactical pink and reinforced purity aprons, these dedicated sisters will bring devastating suppressive fire to your display shelves. Our astropaths predict their arrival in the Imperial catalogs by the next solar cycle. Stay vigilant, Commander!' : 'Équipées de bolters lourds peints en rose tactique et de tabliers de pureté renforcés, ces sœurs dévouées apporteront un tir de suppression dévastateur à vos étagères d\'exposition. Nos astropathes prédisent leur arrivée dans les catalogues impériaux d\'ici le prochain cycle solaire. Restez vigilants, Commandant !'}</p>
+        </div>
+      </article>
+
+      <article class="blog-article">
+        <span class="blog-date">82.143.M42</span>
+        <span class="blog-tag">Work In Progress</span>
+        <h3 class="blog-title">${lang === 'en' ? 'Behind the Scenes: New Purity Seals Designs' : 'En Coulisses : Nouveaux designs pour nos Sceaux de Pureté'}</h3>
+        <div class="blog-content">
+          <p>${lang === 'en' ? 'The scribes of Terra have been working tirelessly on our next update! We are currently testing new designs for the purity seals that accompany our miniatures. Early prototypes feature microscopic litanies of devotion mixed with high-caf tea recipes. These elegant additions give each model a unique look worthy of the Imperium.' : 'Les scribes de Terra ont travaillé sans relâche sur notre prochaine mise à jour ! Nous testons actuellement de nouveaux designs pour les sceaux de pureté qui accompagnent nos figurines. Les premiers prototypes arborent des litanies de dévotion microscopiques mélangées à des recettes de thé très caféiné. Ces ajouts élégants donnent à chaque modèle un aspect unique, digne de l\'Imperium.'}</p>
+          <p>${lang === 'en' ? 'These newly sanctified wax models will be included by default on all upcoming resin casts. Praise the Omnissiah for this adorable efficiency and attention to sacred detail.' : 'Ces nouveaux modèles de cire sanctifiée seront inclus par défaut sur tous nos prochains moulages en résine. Loué soit l\'Omnimessie pour cette adorable efficacité et cette attention aux détails sacrés.'}</p>
+        </div>
+      </article>
+
+      <article class="blog-article">
+        <span class="blog-date">44.143.M42</span>
+        <span class="blog-tag">${lang === 'en' ? 'Community' : 'Communauté'}</span>
+        <h3 class="blog-title">${lang === 'en' ? 'Call to Arms: Share Your Painted Space Maids' : 'Appel aux Armes : Partagez vos Space Maids Peintes'}</h3>
+        <div class="blog-content">
+          <p>${lang === 'en' ? 'Commanders across the galaxy have been responding to our first call. Thousands of Space Maids miniatures have been assembled, primed with Chaos Black or Corax White, and beautifully painted in various shades of pink, gold, and sacred white. We are amazed by your devotion to the craft.' : 'Les commandants aux quatre coins de la galaxie ont répondu à notre premier appel. Des milliers de figurines Space Maids ont été assemblées, sous-couchées au Chaos Black ou au Corax White, et magnifiquement peintes dans des teintes de rose, d\'or et de blanc sacré. Nous sommes émerveillés par votre dévotion à l\'art de la mise en peinture.'}</p>
+          <p>${lang === 'en' ? 'To celebrate this galactic community of painters, we invite you to share your work directly with our sacred Astropathic network. The most faithful interpretations of Primarch Nekona and her devoted sisters will be featured in the next Imperial Armory Bulletin. The Emperor\'s finest deserve recognition.' : 'Pour célébrer cette communauté galactique de peintres, nous vous invitons à partager votre travail sur notre réseau Astropathique sacré. Les interprétations les plus fidèles de Primarch Nekona et de ses sœurs dévouées seront mises en avant dans le prochain Bulletin de l\'Armurerie Impériale. Les meilleurs soldats de l\'Empereur méritent d\'être reconnus.'}</p>
+        </div>
+      </article>
+
+    </div>
+  </main>
+  
   ${footerHtml()}
   ${miniCartHtml()}
   <script src="/js/shop.js"></script>
@@ -714,6 +801,7 @@ app.get('/figurines', (req, res) => res.redirect(301, '/fr/figurines'));
 app.get('/boutique', (req, res) => res.redirect(301, '/fr/figurines'));
 app.get('/lore', (req, res) => res.redirect(301, '/fr/lore'));
 app.get('/faq', (req, res) => res.redirect(301, '/fr/faq'));
+app.get('/blog', (req, res) => res.redirect(301, '/fr/blog'));
 app.get('/login', (req, res) => res.redirect(301, '/fr/login'));
 app.get('/checkout', (req, res) => res.sendFile(path.join(__dirname, 'public', 'checkout.html')));
 app.get('/fr/boutique', (req, res) => res.redirect(301, '/fr/figurines'));
@@ -731,6 +819,7 @@ app.get('/en/boutique', (req, res) => res.redirect(301, '/en/figurines'));
   });
   app.get(`/${lang}/faq`, (req, res) => res.send(renderFaq(lang)));
   app.get(`/${lang}/lore`, (req, res) => res.send(renderLore(lang)));
+  app.get(`/${lang}/blog`, (req, res) => res.send(renderBlog(lang)));
   app.get(`/${lang}/login`, (req, res) => res.send(renderLogin(lang)));
   app.get(`/${lang}/checkout`, (req, res) => res.sendFile(path.join(__dirname, 'public', 'checkout.html')));
 });
@@ -761,6 +850,11 @@ app.get('/sitemap.xml', (req, res) => {
     <loc>${BASE_URL}/${lang}/lore</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>${BASE_URL}/${lang}/blog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>${BASE_URL}/${lang}/login</loc>
@@ -800,7 +894,7 @@ app.listen(PORT, () => {
   █████████████████████████████████████████████████
   █                                               █
   █   ADEPTUS MECHANICUS — SERVEUR ACTIF          █
-  █   Port: ${PORT}  ✦  WARHAMMER SPACE MAIDS ✦  █
+  █   Port: ${PORT}  ✦  WARHAMMER SPACE MAIDS ✦      █
   █                                               █
   █████████████████████████████████████████████████
   `);
